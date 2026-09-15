@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" role="img" aria-labelledby="title desc">
+  <title id="title">Sentiment ML Lab</title>
+  <desc id="desc">Logo with three sentiment signal bars and wordmark</desc>
+  <defs>
+    <linearGradient id="signal" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#50E3A4"/>
+      <stop offset="1" stop-color="#7AA7FF"/>
+    </linearGradient>
+  </defs>
+  <rect x="5" y="5" width="110" height="110" rx="28" fill="#141B26" stroke="#324260" stroke-width="3"/>
+  <path d="M30 76V59M50 89V44M70 73V54M90 90V31" fill="none" stroke="url(#signal)" stroke-width="10" stroke-linecap="round"/>
+  <text x="142" y="62" fill="#F1F5F9" font-family="DM Sans,Arial,sans-serif" font-size="50" font-weight="700">Sentiment ML</text>
+  <text x="144" y="94" fill="#9EABBA" font-family="JetBrains Mono,monospace" font-size="20" letter-spacing="2">ITVIEC LAB</text>
+</svg>

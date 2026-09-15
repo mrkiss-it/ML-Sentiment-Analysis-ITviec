@@ -1,0 +1,50 @@
+{
+  "source_rows": 8417,
+  "company_count": 180,
+  "selected_companies": [
+    {
+      "company": "FPT Software",
+      "review_count": 2014,
+      "wordclouds": {
+        "Positive": "reports/figures/wordcloud_fpt_software_positive.png",
+        "Negative": "reports/figures/wordcloud_fpt_software_negative.png"
+      }
+    },
+    {
+      "company": "NashTech",
+      "review_count": 308,
+      "wordclouds": {
+        "Positive": "reports/figures/wordcloud_nashtech_positive.png",
+        "Negative": "reports/figures/wordcloud_nashtech_negative.png"
+      }
+    },
+    {
+      "company": "Bosch Global Software Technologies Company Limited",
+      "review_count": 278,
+      "wordclouds": {
+        "Positive": "reports/figures/wordcloud_bosch_global_software_technologies_company_limited_positive.png",
+        "Negative": "reports/figures/wordcloud_bosch_global_software_technologies_company_limited_negative.png"
+      }
+    },
+    {
+      "company": "VNG Corporation",
+      "review_count": 259,
+      "wordclouds": {
+        "Positive": "reports/figures/wordcloud_vng_corporation_positive.png",
+        "Negative": "reports/figures/wordcloud_vng_corporation_negative.png"
+      }
+    },
+    {
+      "company": "KMS Technology",
+      "review_count": 251,
+      "wordclouds": {
+        "Positive": "reports/figures/wordcloud_kms_technology_positive.png",
+        "Negative": "reports/figures/wordcloud_kms_technology_negative.png"
+      }
+    }
+  ],
+  "global_wordclouds": {
+    "Positive": "reports/figures/wordcloud_positive_all.png",
+    "Negative": "reports/figures/wordcloud_negative_all.png"
+  }
+}

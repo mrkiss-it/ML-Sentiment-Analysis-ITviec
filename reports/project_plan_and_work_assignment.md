@@ -58,6 +58,6 @@ gantt
 | 2 | File dữ liệu sạch `data/processed/reviews_cleaned.xlsx` (8.417 mẫu) | **TV1 (Hoàng Hôn)** | ✅ **Đã hoàn thành** |
 | 3 | Báo cáo EDA (9 biểu đồ) + Module đặc trưng `src/features.py` + Artifacts `models/` | **TV2 (Văn Duy)** | ✅ **Đã hoàn thành** |
 | 4 | Notebook huấn luyện 5 mô hình ML + File model `best_sentiment_model.joblib` | **TV3 (Duy Khang)** | ⏳ **Sẵn sàng triển khai** |
-| 5 | Bảng đánh giá Final Test, Confusion Matrix, Error Analysis & Demo Web | **TV4 (Thành Trung)** | ⏳ **Chờ TV3 bàn giao** |
+| 5 | Bảng đánh giá Final Test, Confusion Matrix, Error Analysis & Demo Web | **TV4 (Thành Trung)** | ✅ **Hoàn thành** |
 | 6 | Báo cáo toàn văn Word/PDF theo chuẩn yêu cầu môn Máy học | **TV1 (Hoàng Hôn)** & Nhóm | ⏳ **Giai đoạn cuối** |
 | 7 | Slide thuyết trình PowerPoint báo cáo đồ án | **TV1 (Hoàng Hôn)** & Nhóm | ⏳ **Giai đoạn cuối** |

@@ -156,15 +156,36 @@ Do_An_May_Hoc_Sentiment_Analysis/
    - Lưu checkpoint model tối ưu vào `models/best_sentiment_model.joblib`.
 4. **Bước 4 — Mở rộng Deep Learning ([04_sentiment_modeling_deeplearning.ipynb](notebooks/04_sentiment_modeling_deeplearning.ipynb)):**
    - Thử nghiệm đối sánh mô hình Pretrained Transformer (ViSoBERT / PhoBERT) cho phân loại cảm xúc tiếng Việt.
-5. **Bước 5 — Khai phá Insight doanh nghiệp & Đánh giá Final Test ([05_company_sentiment_insights.ipynb](notebooks/05_company_sentiment_insights.ipynb)):**
-   - Đánh giá mô hình tốt nhất trên tập Final Test độc lập (Macro F1, Precision, Recall, Confusion Matrix, Error Analysis).
-   - Trực quan hóa đám mây từ khóa (WordCloud) Tích cực / Tiêu cực và phân tích cảm xúc theo từng công ty IT tiêu biểu.
+5. **Bước 5 — Evaluation, Insight & Web Demo:**
+   - [Notebook 06](notebooks/06_model_evaluation_error_analysis.ipynb) đọc snapshot Final Test đã khóa: Accuracy **73,74%**, Macro F1 **0,5714**, Weighted F1 **0,7489**; có Confusion Matrix và 15 mẫu Error Analysis.
+   - [Notebook 05](notebooks/05_company_sentiment_insights.ipynb) phân tích 180 công ty, xuất WordCloud toàn tập và 5 case study có nhiều review nhất.
+   - Web Demo Streamlit tại `app.py`: Overview, Company Insights, Benchmark, Evaluation và Real-time Prediction bằng Logistic Regression + TF-IDF 5.000 chiều.
 
 ---
 
-## 6. Bảng Theo dõi Tiến độ Dự án (Project Progress & Deliverables)
+## 6. Chạy Web Demo
 
-*Cập nhật lần cuối: 11/09/2026 — Giai đoạn 1, 2 & 3 hoàn thành (TV1 + TV2 + TV3) ✅ | 30/30 tests pass | Giai đoạn 4 (TV4) sẵn sàng triển khai ⏳*
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.lock
+.\.venv\Scripts\python.exe -m streamlit run app.py
+```
+
+Mở `http://localhost:8501`. Lần đầu vào trang dự đoán có thể mất vài giây để khởi tạo tokenizer; các lần suy luận sau được cache tài nguyên.
+
+Chạy kiểm thử:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q
+```
+
+> `scripts/run_tv4_evaluation.py` có cơ chế run-once và sẽ từ chối mở lại Final Test khi snapshot đã tồn tại.
+
+---
+
+## 7. Bảng Theo dõi Tiến độ Dự án (Project Progress & Deliverables)
+
+*Cập nhật lần cuối: 15/09/2026 — TV1–TV4 đã hoàn thành các deliverable kỹ thuật ✅ | 34 tests pass | Final Test đã khóa | Web Demo sẵn sàng*
 
 | STT | Hạng mục công việc | Phụ trách chính | Trạng thái | Chi tiết kế hoạch bàn giao |
 | :---: | :--- | :--- | :---: | :--- |
@@ -172,7 +193,7 @@ Do_An_May_Hoc_Sentiment_Analysis/
 | **2** | **Pipeline Tiền xử lý & Gán nhãn** | **TV1: Hoàng Hôn** | ✅ **Hoàn thành** | `src/preprocessing.py`, `data/processed/reviews_cleaned.xlsx` & `.csv` (8.417 mẫu × 23 cột, 3 nhãn: Positive 73.8% / Neutral 19.5% / Negative 6.8%). |
 | **3** | **Phân tích EDA & Trích xuất TF-IDF** | **TV2: Văn Duy** | ✅ **Hoàn thành** | Notebook `01_data_exploration_eda.ipynb` đã chạy đủ output; 9 biểu đồ 300 DPI tại `reports/figures/`; `src/features.py` + 18 test pass; Stratified 80/20 seed 2026 (development 6.731 / final test 1.683 khóa); artifacts `text_tfidf_vectorizer.joblib`, `text_feature_extractor.joblib`, `train_test_features.joblib`, `artifact_manifest.json` (có checksum + runtime). CV development: TF-IDF (1,2) Macro F1 **0,5722**. Báo cáo: `reports/eda_feature_engineering.md`. |
 | **4** | **Huấn luyện Mô hình Machine Learning** | **TV3: Duy Khang** | ✅ **Hoàn thành** | `03_sentiment_modeling_ml.ipynb` + `src/models.py` (12 test pass): so sánh `class_weight='balanced'` vs SMOTE (SMOTE bọc trong Pipeline theo từng fold, chống leakage), GridSearchCV tune 5 thuật toán (Naive Bayes, Logistic Regression, Linear SVM, Random Forest, Stacking Ensemble `[MNB,LR,SVM,RF]→LR`) bằng Stratified 5-Fold CV trên Development set (`X_train`, không đụng Final Test). Model tốt nhất: **Logistic Regression** (`C=1.0`, SMOTE), CV Macro F1 **0,5727**, khóa tại `models/best_sentiment_model.joblib`. Báo cáo: [reports/modeling_hyperparameter_tuning.md](reports/modeling_hyperparameter_tuning.md). |
-| **5** | **Đánh giá Final Test, Insight & Demo** | **TV4: Thành Trung** | ⏳ **Sẵn sàng triển khai (đã có model từ TV3)** | Tiếp nhận model tốt nhất từ TV3, làm việc trên `05_company_sentiment_insights.ipynb`: đánh giá Final Test độc lập đúng 1 lần (Macro F1, Precision, Recall, Confusion Matrix, Error Analysis), trích xuất WordCloud theo công ty và xây dựng Web Demo tương tác (Streamlit/Gradio). |
+| **5** | **Đánh giá Final Test, Insight & Demo** | **TV4: Thành Trung** | ✅ **Hoàn thành** | Final Test run-once: Accuracy **73,74%**, Macro F1 **0,5714**; có per-class metrics, Confusion Matrix, 15 mẫu Error Analysis, 12 WordCloud, 5 company case study và Web Demo Streamlit. |
 | **6** | **Tổng hợp Báo cáo Word & Slide trình chiếu** | **TV1 & Cả nhóm** | ⏳ **Giai đoạn cuối** | Soạn thảo toàn văn Báo cáo Word/PDF và hoàn thiện Slide PowerPoint theo đúng cấu trúc đề cương `reports/De_Cuong_Do_An_Mon_Hoc_May_Hoc.md`. |
 
 

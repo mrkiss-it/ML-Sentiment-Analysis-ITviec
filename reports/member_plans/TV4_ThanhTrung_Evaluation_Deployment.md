@@ -9,34 +9,34 @@
 ## 📌 I. DANH SÁCH NHIỆM VỤ CHI TIẾT (CHECKLIST)
 
 ### 🟢 Giai đoạn 1: Đánh giá mô hình & Phân tích lỗi (Error Analysis)
-- [ ] **Đánh giá trên tập Final Test độc lập (20% - 1.683 mẫu):**
+- [x] **Đánh giá trên tập Final Test độc lập (20% - 1.683 mẫu):**
   - Nhận mô hình tối ưu `models/best_sentiment_model.joblib` từ TV3.
   - Chạy dự đoán đúng **một lần duy nhất** trên tập Final Test độc lập (chống rò rỉ dữ liệu).
   - Tính toán các chỉ số đánh giá: **Macro F1-Score, Weighted F1-Score, Accuracy, Precision, Recall** theo từng lớp.
   - **Phân tích per-class chi tiết:** so sánh Precision, Recall, F1 riêng biệt cho từng lớp Positive / Neutral / Negative để phân tích lớp nào khó phân loại nhất.
-- [ ] **Bảng so sánh hiệu suất giữa các mô hình (Model Ranking):**
+- [x] **Bảng so sánh hiệu suất giữa các mô hình (Model Ranking):**
   - Lập bảng tổng hợp kết quả 5 mô hình: Accuracy, Macro F1, Weighted F1, thời gian huấn luyện.
   - Xếp hạng rõ ràng: Mô hình nào tốt nhất? Chênh lệch bao nhiêu? Lý giải vì sao (liên hệ đặc điểm dữ liệu TF-IDF).
-- [ ] **Trực quan hóa ma trận nhầm lẫn (Confusion Matrix):**
+- [x] **Trực quan hóa ma trận nhầm lẫn (Confusion Matrix):**
   - Vẽ Heatmap Confusion Matrix và Normalized Confusion Matrix.
   - Phân tích lớp nào bị dự đoán nhầm lẫn nhiều nhất (ví dụ: Neutral bị nhầm sang Positive do từ ngữ khen áp đảo).
-- [ ] **Phân tích lỗi sai chuyên sâu (Error Analysis):**
+- [x] **Phân tích lỗi sai chuyên sâu (Error Analysis):**
   - Lọc và phân loại các mẫu dự đoán sai thành các nhóm nguyên nhân cụ thể:
     1. Câu mang tính châm biếm, mỉa mai.
     2. Câu có cấu trúc ngữ pháp phức tạp hoặc chứa cả ý khen lẫn ý chê.
     3. Mâu thuẫn giữa nội dung review và số sao rating người dùng chấm (Label Noise).
-- [ ] **Đánh giá hiện tượng Overfitting / Underfitting:**
+- [x] **Đánh giá hiện tượng Overfitting / Underfitting:**
   - So sánh khoảng cách điểm số giữa tập Train CV và tập Final Test.
 
 ### 🟢 Giai đoạn 2: Phân tích Insight doanh nghiệp & Xây dựng Demo
-- [ ] **Chạy [notebooks/05_company_sentiment_insights.ipynb](file:///d:/Trí%20tuệ%20nhân%20tạo/HK2/Máy%20học/Project/Do_An_May_Hoc_Sentiment_Analysis/notebooks/05_company_sentiment_insights.ipynb):**
+- [x] **Chạy [notebooks/05_company_sentiment_insights.ipynb](../../notebooks/05_company_sentiment_insights.ipynb):**
   - Trích xuất WordCloud từ khóa Tích cực / Tiêu cực đặc trưng cho 3-5 công ty IT tiêu biểu.
   - Thống kê tỷ lệ hài lòng nhân viên theo từng khía cạnh (Lương, OT, Quản lý).
-- [ ] **Xây dựng ứng dụng Demo (Streamlit / Gradio):**
+- [x] **Xây dựng ứng dụng Demo (Streamlit):**
   - Tạo giao diện web trực quan: Người dùng nhập văn bản đánh giá $\rightarrow$ Hệ thống tiền xử lý $\rightarrow$ Trích xuất TF-IDF $\rightarrow$ Mô hình ML dự đoán sắc thái cảm xúc kèm biểu đồ xác suất phần trăm theo thời gian thực.
 
 ### 🟢 Giai đoạn 3: Soạn thảo Báo cáo môn Máy học
-- [ ] **Viết nội dung Báo cáo:**
+- [x] **Viết nội dung Báo cáo:**
   - **Mục 3.4 & 3.5:** Bảng so sánh kết quả thực nghiệm toàn diện, biểu đồ Confusion Matrix và phần Phân tích lỗi (Error Analysis).
   - **Mục 5 & 6:** Phân tích Insight doanh nghiệp, đề xuất giải pháp thực tế, kết luận đề tài và hướng phát triển tương lai.
 
@@ -49,5 +49,5 @@
 * **Đầu ra (Outputs bàn giao):**
   - Bảng tổng hợp số liệu đánh giá (Accuracy, Precision, Recall, Macro F1).
   - Biểu đồ Confusion Matrix và báo cáo Phân tích lỗi (Error Analysis).
-  - Notebook hoàn chỉnh [notebooks/05_company_sentiment_insights.ipynb](file:///d:/Trí%20tuệ%20nhân%20tạo/HK2/Máy%20học/Project/Do_An_May_Hoc_Sentiment_Analysis/notebooks/05_company_sentiment_insights.ipynb).
+  - Notebook hoàn chỉnh [notebooks/05_company_sentiment_insights.ipynb](../../notebooks/05_company_sentiment_insights.ipynb) và [notebooks/06_model_evaluation_error_analysis.ipynb](../../notebooks/06_model_evaluation_error_analysis.ipynb).
   - Mã nguồn ứng dụng Demo (Streamlit/Gradio).

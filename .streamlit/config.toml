@@ -1,0 +1,36 @@
+[server]
+headless = true
+
+[client]
+toolbarMode = "viewer"
+
+[theme]
+base = "dark"
+primaryColor = "#7AA7FF"
+backgroundColor = "#080B10"
+secondaryBackgroundColor = "#121820"
+textColor = "#F1F5F9"
+linkColor = "#8DB4FF"
+borderColor = "#29313D"
+showWidgetBorder = true
+showSidebarBorder = true
+baseRadius = "12px"
+buttonRadius = "10px"
+font = "'DM Sans':https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap"
+headingFont = "'DM Sans':https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700&display=swap"
+codeFont = "'JetBrains Mono':https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap"
+baseFontSize = 17
+headingFontSizes = ["38px", "29px", "23px", "19px", "17px", "15px"]
+headingFontWeights = [700, 650, 600, 600, 600, 600]
+chartCategoricalColors = ["#50E3A4", "#F4D35E", "#FF6677", "#7AA7FF", "#FF994F", "#A78BFA"]
+greenColor = "#50E3A4"
+redColor = "#FF6677"
+yellowColor = "#F4D35E"
+blueColor = "#7AA7FF"
+orangeColor = "#FF994F"
+
+[theme.sidebar]
+backgroundColor = "#0C1017"
+secondaryBackgroundColor = "#141B26"
+borderColor = "#29313D"
+primaryColor = "#7AA7FF"

@@ -1,0 +1,201 @@
+﻿Company Name,sentiment,rank,keyword,count
+FPT Software,Positive,1,tốt,972
+FPT Software,Positive,2,làm_việc,901
+FPT Software,Positive,3,không,899
+FPT Software,Positive,4,môi_trường,863
+FPT Software,Positive,5,lương,801
+FPT Software,Positive,6,dự_án,796
+FPT Software,Positive,7,công_ty,759
+FPT Software,Positive,8,nhân_viên,704
+FPT Software,Positive,9,thoải_mái,327
+FPT Software,Positive,10,chưa,318
+FPT Software,Positive,11,cơ_hội,305
+FPT Software,Positive,12,công_việc,293
+FPT Software,Positive,13,thân_thiện,277
+FPT Software,Positive,14,văn_phòng,272
+FPT Software,Positive,15,học_hỏi,271
+FPT Software,Positive,16,đồng_nghiệp,267
+FPT Software,Positive,17,chế_độ,264
+FPT Software,Positive,18,sếp,254
+FPT Software,Positive,19,đẹp,252
+FPT Software,Positive,20,đi,239
+FPT Software,Negative,1,không,349
+FPT Software,Negative,2,lương,229
+FPT Software,Negative,3,nhân_viên,139
+FPT Software,Negative,4,tốt,123
+FPT Software,Negative,5,dự_án,121
+FPT Software,Negative,6,làm_việc,110
+FPT Software,Negative,7,công_ty,89
+FPT Software,Negative,8,môi_trường,83
+FPT Software,Negative,9,thoải_mái,55
+FPT Software,Negative,10,công_việc,50
+FPT Software,Negative,11,tiền,49
+FPT Software,Negative,12,trường,46
+FPT Software,Negative,13,thời_gian,46
+FPT Software,Negative,14,văn_phòng,44
+FPT Software,Negative,15,phù_hợp,42
+FPT Software,Negative,16,đồng_nghiệp,41
+FPT Software,Negative,17,đi,40
+FPT Software,Negative,18,quản_lý,39
+FPT Software,Negative,19,chế_độ,36
+FPT Software,Negative,20,thưởng,34
+NashTech,Positive,1,không,231
+NashTech,Positive,2,tốt,209
+NashTech,Positive,3,làm_việc,205
+NashTech,Positive,4,công_ty,193
+NashTech,Positive,5,môi_trường,167
+NashTech,Positive,6,lương,157
+NashTech,Positive,7,dự_án,138
+NashTech,Positive,8,nhân_viên,136
+NashTech,Positive,9,thoải_mái,87
+NashTech,Positive,10,chưa,68
+NashTech,Positive,11,ot,66
+NashTech,Positive,12,rõ_ràng,62
+NashTech,Positive,13,văn_phòng,62
+NashTech,Positive,14,đồng_nghiệp,59
+NashTech,Positive,15,thân_thiện,55
+NashTech,Positive,16,công_việc,53
+NashTech,Positive,17,thời_gian,50
+NashTech,Positive,18,phúc_lợi,50
+NashTech,Positive,19,đào_tạo,49
+NashTech,Positive,20,đánh_giá,45
+NashTech,Negative,1,không,51
+NashTech,Negative,2,dự_án,33
+NashTech,Negative,3,quản_lý,19
+NashTech,Negative,4,công_ty,15
+NashTech,Negative,5,lương,12
+NashTech,Negative,6,lập_trình_viên,10
+NashTech,Negative,7,tiền,9
+NashTech,Negative,8,đánh_giá,9
+NashTech,Negative,9,nhân_viên,9
+NashTech,Negative,10,đội,8
+NashTech,Negative,11,tốt,8
+NashTech,Negative,12,cỏ,8
+NashTech,Negative,13,thời_gian,7
+NashTech,Negative,14,anh_em,7
+NashTech,Negative,15,phát_triển,7
+NashTech,Negative,16,khô,7
+NashTech,Negative,17,đi,6
+NashTech,Negative,18,thành_viên,6
+NashTech,Negative,19,vấn_đề,6
+NashTech,Negative,20,quản_lí,5
+Bosch Global Software Technologies Company Limited,Positive,1,không,190
+Bosch Global Software Technologies Company Limited,Positive,2,tốt,140
+Bosch Global Software Technologies Company Limited,Positive,3,lương,101
+Bosch Global Software Technologies Company Limited,Positive,4,môi_trường,90
+Bosch Global Software Technologies Company Limited,Positive,5,công_ty,90
+Bosch Global Software Technologies Company Limited,Positive,6,làm_việc,88
+Bosch Global Software Technologies Company Limited,Positive,7,nhân_viên,63
+Bosch Global Software Technologies Company Limited,Positive,8,công_việc,59
+Bosch Global Software Technologies Company Limited,Positive,9,ot,46
+Bosch Global Software Technologies Company Limited,Positive,10,phúc_lợi,44
+Bosch Global Software Technologies Company Limited,Positive,11,thân_thiện,39
+Bosch Global Software Technologies Company Limited,Positive,12,dự_án,38
+Bosch Global Software Technologies Company Limited,Positive,13,thoải_mái,37
+Bosch Global Software Technologies Company Limited,Positive,14,đồng_nghiệp,32
+Bosch Global Software Technologies Company Limited,Positive,15,văn_phòng,32
+Bosch Global Software Technologies Company Limited,Positive,16,sếp,29
+Bosch Global Software Technologies Company Limited,Positive,17,tiền,26
+Bosch Global Software Technologies Company Limited,Positive,18,đội,25
+Bosch Global Software Technologies Company Limited,Positive,19,thưởng,23
+Bosch Global Software Technologies Company Limited,Positive,20,tùy,22
+Bosch Global Software Technologies Company Limited,Negative,1,không,150
+Bosch Global Software Technologies Company Limited,Negative,2,lương,55
+Bosch Global Software Technologies Company Limited,Negative,3,tốt,35
+Bosch Global Software Technologies Company Limited,Negative,4,nhân_viên,34
+Bosch Global Software Technologies Company Limited,Negative,5,công_ty,31
+Bosch Global Software Technologies Company Limited,Negative,6,làm_việc,30
+Bosch Global Software Technologies Company Limited,Negative,7,sếp,26
+Bosch Global Software Technologies Company Limited,Negative,8,dự_án,23
+Bosch Global Software Technologies Company Limited,Negative,9,công_việc,19
+Bosch Global Software Technologies Company Limited,Negative,10,thời_gian,19
+Bosch Global Software Technologies Company Limited,Negative,11,quản_lý,19
+Bosch Global Software Technologies Company Limited,Negative,12,môi_trường,17
+Bosch Global Software Technologies Company Limited,Negative,13,đi,16
+Bosch Global Software Technologies Company Limited,Negative,14,khách_hàng,15
+Bosch Global Software Technologies Company Limited,Negative,15,phúc_lợi,14
+Bosch Global Software Technologies Company Limited,Negative,16,văn_phòng,14
+Bosch Global Software Technologies Company Limited,Negative,17,chính_sách,13
+Bosch Global Software Technologies Company Limited,Negative,18,rõ_ràng,12
+Bosch Global Software Technologies Company Limited,Negative,19,ấn_độ,12
+Bosch Global Software Technologies Company Limited,Negative,20,ấn,11
+VNG Corporation,Positive,1,không,296
+VNG Corporation,Positive,2,tốt,235
+VNG Corporation,Positive,3,môi_trường,188
+VNG Corporation,Positive,4,làm_việc,185
+VNG Corporation,Positive,5,nhân_viên,154
+VNG Corporation,Positive,6,công_ty,125
+VNG Corporation,Positive,7,lương,122
+VNG Corporation,Positive,8,phúc_lợi,80
+VNG Corporation,Positive,9,công_việc,75
+VNG Corporation,Positive,10,văn_phòng,70
+VNG Corporation,Positive,11,chưa,64
+VNG Corporation,Positive,12,đội,63
+VNG Corporation,Positive,13,thoải_mái,62
+VNG Corporation,Positive,14,đẹp,62
+VNG Corporation,Positive,15,ot,58
+VNG Corporation,Positive,16,phòng,51
+VNG Corporation,Positive,17,chế_độ,49
+VNG Corporation,Positive,18,thân_thiện,47
+VNG Corporation,Positive,19,sếp,42
+VNG Corporation,Positive,20,xe,38
+VNG Corporation,Negative,1,không,16
+VNG Corporation,Negative,2,thay_đổi,7
+VNG Corporation,Negative,3,công_ty,7
+VNG Corporation,Negative,4,nhân_viên,7
+VNG Corporation,Negative,5,làm_việc,6
+VNG Corporation,Negative,6,văn_phòng,6
+VNG Corporation,Negative,7,hơi,6
+VNG Corporation,Negative,8,lương,6
+VNG Corporation,Negative,9,frequent,4
+VNG Corporation,Negative,10,đẹp,4
+VNG Corporation,Negative,11,ứng_viên,4
+VNG Corporation,Negative,12,sếp,4
+VNG Corporation,Negative,13,phòng,3
+VNG Corporation,Negative,14,vng,3
+VNG Corporation,Negative,15,công_việc,3
+VNG Corporation,Negative,16,kinh_nghiệm,3
+VNG Corporation,Negative,17,xe,3
+VNG Corporation,Negative,18,rộng,3
+VNG Corporation,Negative,19,tốt,3
+VNG Corporation,Negative,20,phù_hợp,3
+KMS Technology,Positive,1,không,344
+KMS Technology,Positive,2,tốt,273
+KMS Technology,Positive,3,công_ty,208
+KMS Technology,Positive,4,môi_trường,175
+KMS Technology,Positive,5,nhân_viên,166
+KMS Technology,Positive,6,làm_việc,165
+KMS Technology,Positive,7,lương,128
+KMS Technology,Positive,8,thân_thiện,82
+KMS Technology,Positive,9,văn_phòng,81
+KMS Technology,Positive,10,dự_án,81
+KMS Technology,Positive,11,ot,69
+KMS Technology,Positive,12,đẹp,63
+KMS Technology,Positive,13,công_việc,60
+KMS Technology,Positive,14,xe,60
+KMS Technology,Positive,15,chưa,58
+KMS Technology,Positive,16,tiền,56
+KMS Technology,Positive,17,có_thể,49
+KMS Technology,Positive,18,đồng_nghiệp,49
+KMS Technology,Positive,19,sếp,48
+KMS Technology,Positive,20,thoải_mái,46
+KMS Technology,Negative,1,không,43
+KMS Technology,Negative,2,công_ty,23
+KMS Technology,Negative,3,nhân_viên,13
+KMS Technology,Negative,4,lương,13
+KMS Technology,Negative,5,tốt,10
+KMS Technology,Negative,6,ổn,8
+KMS Technology,Negative,7,công_việc,7
+KMS Technology,Negative,8,dự_án,7
+KMS Technology,Negative,9,đánh_giá,6
+KMS Technology,Negative,10,phù_hợp,6
+KMS Technology,Negative,11,làm_việc,5
+KMS Technology,Negative,12,đi,5
+KMS Technology,Negative,13,kiểu,4
+KMS Technology,Negative,14,công_nghệ,4
+KMS Technology,Negative,15,có_thể,4
+KMS Technology,Negative,16,quy_trình,4
+KMS Technology,Negative,17,thoải_mái,4
+KMS Technology,Negative,18,process,4
+KMS Technology,Negative,19,sa_thải,3
+KMS Technology,Negative,20,hoạt_động,3

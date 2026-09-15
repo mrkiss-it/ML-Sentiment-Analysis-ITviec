@@ -1,0 +1,62 @@
+﻿source_index,company,rating,review,actual,predicted,confidence,error_reason,p_negative,p_neutral,p_positive,manual_category,manual_analysis
+1418,FPT Software,3,"Tốt cho người mới . Môi trường làm việc chuyên nghiệp và năng động, với cơ hội được làm việc trong các dự án lớn và có cơ hội học hỏi, phát triển bản thân.
+Chính sách làm thêm giờ tại có thể gây không hài lòng vì thiếu sự minh bạch hoặc không công bằng trong cách tính toán và chi trả. . Cần có một chính sách minh bạch, công bằng và rõ ràng hơn về việc tính giờ làm thêm và bồi thường. Công ty nên đưa ra các khoản hỗ trợ hoặc ngày nghỉ bù phù hợp để tạo sự thoải mái cho nhân viên.",Neutral,Positive,0.967481191158625,Phủ định hoặc cấu trúc phức tạp,0.0159621593014248,0.0165566495399502,0.967481191158625,Mixed sentiment,Nhiều tín hiệu tích cực ở đầu review lấn át phần phàn nàn về chính sách OT.
+4736,LG CNS Việt Nam,3,"Working environment is very good!! . Công ty có trang thiết bị cho nhân viên xịn xò, vừa bước vào nhận chỗ đã được nhận màn hình 35 inch xịn xò, laptop gram đắt tiền + performance tốt. Đồng nghiệp thân thiện, support lẫn nhau những lúc khó khăn. Thời gian làm việc thoải mái linh hoạt, môi trường mở làm việc với người nước ngoài, có cơ hội phát triển khả năng ngoại ngữ. Công ty luôn mua đồ ăn cho nhân viên để tiếp sức những lúc mệt mỏi. Đặc biệt hàng tháng sẽ có nhữung sự kiện để nâng cao tinh thần làm việc cho anh em như Developers' Day.... Đặc biệt là không phải OT, mang việc về nhà, giúp bản thân cân bằng được cuộc sống và công việc.
+we are paid overtime following Vietnam labor policy . N/A
+Company is very good and there's none of suggestion for improvement",Neutral,Positive,0.962159650314928,Phủ định hoặc cấu trúc phức tạp,0.0008278687623371,0.0370124809227349,0.962159650314928,Label noise,Nội dung gần như hoàn toàn tích cực nhưng rating 3 sao sinh nhãn Neutral.
+8121,VNG Corporation,3,"Môi trường năng động . Phòng tập gym, hoạt động thể dục thể thao, môi trường đa dạng ngành nghề
+Tuy thuộc theo nhu cầu công việc, đôi khi phải OT liên tục để release, nhưng đôi khi rất nhàn, có time để research . Phụ thuộc theo product, chính sách khác nhau giữa các product",Neutral,Positive,0.9470376859900604,Mixed sentiment / nhiều vế ý,0.0023249553262775,0.050637358683662,0.9470376859900604,Mixed sentiment,Khen môi trường nhưng nêu OT và chính sách khác nhau theo product.
+7529,TRUONG MINH THINH TECHNOLOGY JOINT STOCK COMPANY,4,"Sếp tốt, giờ giấc thoải mái . Thời gian làm việc thoải mái, sếp tốt, đồng nghiệp thân thiện . OT nhiều, review lương chậm, bãi xe chật chội, dự án maintain là chính
+OT nhiều ko có lương, ko dc xếp xem xét đúng mức.",Positive,Neutral,0.9452147088398628,Label noise hoặc tín hiệu TF-IDF chưa đủ,0.0160613812237832,0.9452147088398628,0.0387239099363537,Label noise,Rating 4 sao sinh Positive dù nội dung có nhiều phàn nàn mạnh về OT và lương.
+2884,FPT Software,4,"Môi trường tốt, thời gian linh hoạt, đồng nghiệp gần gũi dễ gần. . Văn phòng đẹp
+Chỗ để xe rộng rãi
+Môi trường trẻ trung
+Thích hợp với các bạn mới ra trường . Mặt bằng lương chưa cao
+Lương tăng chậm
+Trang thiết bị khá cũ",Positive,Neutral,0.9448612752251738,Phủ định hoặc cấu trúc phức tạp,0.0141908586716958,0.9448612752251738,0.0409478661031302,Mixed sentiment,Phần khen môi trường đi kèm chê lương và trang thiết bị.
+5329,NashTech,3,"Đội ngũ PM yếu kém và bao che khuyết điểm cho nhau . Có chế độ sức khoẻ cho bản thân và người thân, work-life balance OK.
+Ít OT và đôi khi có lương, nhưng tuỳ thuộc vào khả năng đàm phán của PM . Quản lý yếu, dột từ nóc. Những thứ quản lý cần làm được thì không làm, đẩy xuống cho anh em ở dưới, anh em làm được thì công của quản lý vì ""biết trao quyền"", không làm được thì do anh em không đạt KPI.
+Điển hình có những PM đòi member xịn, không xịn thì mách lẻo, mách lẻo không được thì dỗi, trong khi vai trò PM là team builder thì không làm được.
+Lương của NT thấp hơn nhiều so với mặt bằng chung, khi tình hình khó khăn thay vì tìm cách để xử lý thì lại đi gas lighting member là thiếu kỹ năng này kỹ năng nọ để tìm cách dìm lương.
+KPI không rõ ràng, thấy mấy anh chị LM feedback liên tục qua nhiều năm mà khả năng set KPI của PM chỉ tương đương bài văn tả cảnh của học sinh cấp 2: không có số liệu cụ thể, dùng toàn từ ngữ chung chung, đôi khi không rõ họ lên chức PM bằng cách nào.
+HR càng ngày càng quá đáng, hết phải đóng thêm quỹ mới có quà, quà thì toàn thứ vớ vẩn không có ý nghĩa gì, mua cho có. Khi feedback thì HRM đổ tội cho member là kêu nhiều quá.
+Là nasher gạo cội (>7 năm làm việc), tôi thấy đội ngũ PM, HRM, RMO càng ngày càng yếu từ 2 năm đổ lại đây.",Neutral,Negative,0.9436660197770949,Mixed sentiment / nhiều vế ý,0.9436660197770949,0.029902769467618,0.0264312107552872,Label noise,Nội dung tiêu cực rất mạnh nhưng rating 3 sao sinh nhãn Neutral.
+127,"AZPLAYS Co., LTD",3,"Công ty ổn áp, chỉ làm xa nhà chứ mọi phúc lợi đều tốt . Công ty luôn cấp phát trái cây bánh kẹo tuần 2 lần, đồ ăn tủ lạnh lúc nào cũng full ko lo đói
+Nếu vào mùa nhiều dự án mới phải OT, nhưng thời gian OT ít, lương x2, x3 tùy giờ nên cũng xứng đáng . Nếu công ty mở lại chi nhánh ở HCM thì tốt gần nhà hơn, nhưng mức lương khi làm xa thì lại cao hơn",Neutral,Positive,0.9342411721201072,Mixed sentiment / nhiều vế ý,0.0077308724853971,0.0580279553944957,0.9342411721201072,Mixed sentiment,"Nhiều ý khen phúc lợi, nhưng có bất tiện về khoảng cách và mùa OT."
+2399,FPT Software,4,"Khá ổn để dấn thân vào ngành IT . môi trường năng động, training bài bản cho fresher về quy trình và các kỹ năng cơ bản
+dự án được làm việc với khách nước ngoài, học hỏi thêm được nhiều từ chuyên ngành để chém gió
+môi trường outsourcing nên tiếp cận công nghệ theo hướng rộng, cái gì cũng biết một ít, chịu nghiên cứu thêm thì cũng ổn
+OT tùy dự án, thường được tính ra lương, chịu khó cũng kiếm thêm được . review tăng lương chậm và mức tăng không cạnh tranh lắm so với mặt bằng",Positive,Neutral,0.9281021947016196,Phủ định hoặc cấu trúc phức tạp,0.0097186325060096,0.9281021947016196,0.0621791727923706,Mixed sentiment,Khen cơ hội học hỏi nhưng chê lương thấp và tăng chậm.
+2668,FPT Software,2,"Môi trường làm việc năng động . Môi trường năng động, nhiều công nghệ mới
+Sếp tâm lý quan tâm nhân viên . OT OT OT OT OT, quá nhiều OT, mà lương thấp
+thưởng hơi ít",Negative,Positive,0.9187918668025878,Label noise hoặc tín hiệu TF-IDF chưa đủ,0.0031417107217675,0.0780664224756445,0.9187918668025878,Mixed sentiment,"Mở đầu tích cực, kết thúc bằng OT lặp lại, lương và thưởng thấp."
+2592,FPT Software,2,"môi trường thoải mái thân thiện . Môi trường thoải mái, thư giãn, không gian trong lành, đồng nghiệp thân thiện, đầu vào dễ
+có nhà nghỉ cho nhân viên ON 100k/người =))), OT rõ ràng vì có tool . lương thấp, hay phải OT, sếp đánh giá cảm tính, tăng lương ít",Negative,Neutral,0.9163572630702967,Phủ định hoặc cấu trúc phức tạp,0.0253018018680197,0.9163572630702967,0.0583409350616834,Mixed sentiment,"Câu khen môi trường chiếm nhiều token trước phần chê lương, OT và quản lý."
+3130,FPT Software,4,"Môi trường tốt, nhiều benefit, cơ hội học hỏi công nghệ mới . Công ty rộng rãi mát mẻ, có đủ phòng gym, cafe Trung nguyên, sân bóng, nhiều department để làm việc
+Luôn có nhìu lớp học kỹ năng/công nghệ mới, ngoại ngữ...
+Môi trường khá năng động, nhiều người trẻ
+Cơ hội đi onsite nước ngoài/trong nước
+Nhiều lúc áp lực cho dev, có khi OT qua đêm ngủ lại cty : )) Nhưng cũng học được nhiều thứ, môi trường vui vẻ . Lên lương khá chậm và ko cao
+Nhiều dự án dev phải làm OT qua đêm, khá cực (nhưng tốt cho bạn mới chưa có kinh nghiệm nhiều)",Positive,Neutral,0.8914981420132263,Mixed sentiment / nhiều vế ý,0.0164142786285219,0.8914981420132263,0.0920875793582517,Mixed sentiment,"Review khen học hỏi và phúc lợi nhưng chê áp lực, OT qua đêm và lương."
+2440,FPT Software,3,"Phù hợp cho SV mới ra trường, lương cho NV ít kinh nghiệm thấp . Học được nhiều công nghệ mới. Phù hợp cho các bạn SV mới ra trường
+OT không nhiều và thời gian làm việc thoải mái nên nếu OT thì sáng mai đi làm trễ một chút cũng không sao . Quy trình làm việc rườm ra (có thể do quy mô cty quá lớn). Một số manager không tốt chèn ép member.",Neutral,Negative,0.8906977631202194,Phủ định hoặc cấu trúc phức tạp,0.8906977631202194,0.1001828331524333,0.0091194037273471,Mixed sentiment,"Cơ hội học tập tốt đi cùng lương thấp, quy trình rườm rà và quản lý kém."
+3016,FPT Software,4,"Có thể deal lương . Có thể deal lương. Fresher lương có thể chênh nhau 4 triệu . Bảo hiểm trên mức lương cơ bản nên tương lai không được tốt
+Không có lương. Làm outsoure nên OT nhiều. 50 ký tự",Positive,Negative,0.8905027290341097,Phủ định hoặc cấu trúc phức tạp,0.8905027290341097,0.0735422754903299,0.0359549954755603,Label noise,Nội dung chủ yếu tiêu cực nhưng rating 4 sao sinh nhãn Positive.
+950,ekino Vietnam,3,"Chỉ phù hợp cho các PHP developer . Đa số là internship và junior, hú một cái là đi nhậu và nhoi nhoi rất zui. Sáng có cà phê uống ngồi chém gió, trưa ăn cơm chung trong cty chém gió đủ chủ đề. Chiều về các ae đi đá banh nữa. Zui lắm. Nhưng hồi đó được cty bao cơm trưa, còn giờ thì không còn nữa.
+Không được trả lương, không quy ra ngày phép, chỉ cho bánh ăn. . Là cty outsource nên đều như nhau. Nếu bạn vào một dự án mà khách hàng trời ơi đất hỡi thì nên tìm đường lui. Vì lơi nhuận đến từ việc cty cho thuê bạn, nên cty cũng không làm gì được.
+Trong cty có 2 hiểu làm việc. Kiểu một là sẽ có 1 PM đứng ra nhận yêu cầu từ khách hàng rồi về chia việc lại cho ~5 internship hay junior. Kiểu còn lại là senior tham gia trực tiếp vào team khách hàng luôn, làm việc như là một nhân viên của khách hàng.
+Kiểu một thì đa số PM là 50% từ Dev đi lên và tay nghề thì chưa thể gọi là senior được. Kinh nghiệm về đàm phán không được cao, và đôi khi dẫn đến các bạn internship và junior phải OT không lương. Đây là kiểu làm việc chiếm đa số tại Ekino (~80%)
+Kiểu hai thì chỉ có senior đảm nhận. Bạn sẽ bị khách hàng bào, rất cực, và áp lực. Mình thấy vị trí này rất ít trong cty và thường xuyên bị đổi người. Chỉ có duy nhất một anh Golang Dev thần thánh trụ hơn 1 năm, nhưng cũng ra đi.
+Về phía quản lý và nhân sự, hồi 3 năm trước được đảm nhận bởi các anh chị có kinh nghiệm nên rất chuyên nghiệp. Lúc mình mới vào đó là ấn tượng đầu tiên của mình, nó rất mạnh. Nhưng hiện tại thì không còn nữa, chỉ 1-2 người core thôi, còn lại được thế bằng internship và junior.
+Về phía vệ sinh, đã được cải thiện trong những tháng gần đây. Cty đã thay mới lao công và quy trình dọn dẹp chi tiết hơn thay vì kiểu ""Chị cứ thấy dơ dơ ở đâu thì dọn giúp em nhe."" hay ""Em thấy đâu mà dơ dơ thì kêu chị nhe"" :)))
+Về phía cơ sở vật chất, Mình chỉ nói một câu. Nó tệ. (Không đến mức rất tệ)
+Về phần chắm công, Hiện tại cty chỉ kiểm tra check-in của nhân viên mà không có check-out. Một vài trường hợp như đi trễ 5p nhưng OT thêm 1 tiếng cũng bị cty báo vắng và trừ 0.5 ngày. Nên một vài nhân viên thấy trễ nên chiều vào luôn cũng không làm gì được họ. Nên có check-out sẽ tốt hơn.
+Về phần Technical, cty có tech stack mạnh về các thể loại PHP. Nên sẽ phù hợp hơn nếu bạn là một PHP dev.
+Lời nhắn nhủ với với các bạn internship, cty không có lộ trình đào tạo cho internship, chỉ nhảy thẳng vào dự án rồi cằm tay chỉ việc một vài tuần rồi làm việc luôn. Nên quy trình làm việc và một vài kỹ năng khác bạn sẽ không có.",Neutral,Negative,0.8885210334860502,Mixed sentiment / nhiều vế ý,0.8885210334860502,0.0673411373177116,0.0441378291962382,Multi-aspect long review,"Review rất dài, nhiều khía cạnh và thời điểm; một nhãn ba lớp không giữ được sắc thái."
+466,Bosch Global Software Technologies Company Limited,2,"Cần OT nhiều để kịp deadline . Môi trường làm việc tốt, thoải mái.
+Đồng nghiệp vui vẻ, hòa đồng. . Đa phần là support cho Bosch Ấn Độ.
+Không phù hợp cho sinh viên mới ra trường muốn đi theo hướng thiên về kỹ thuật.
+Nếu vào theo đúng chuyên ngành và department thì sẽ có công việc phù hợp, còn không thì sẽ rất chán.
+Tùy theo project, cần OT nhiều để kịp deadline, nhưng không có benefits xứng đáng, lương không cao.
+Cần cải thiện thời gian estimate, giảm thời gian OT.
+Đánh gia tăng lương còn nhiều điểm không hợp lý.",Negative,Neutral,0.8879393117331791,Mixed sentiment / nhiều vế ý,0.103037706161873,0.8879393117331791,0.0090229821049477,Mixed sentiment,"Khen môi trường nhưng chê OT, lương và cơ hội kỹ thuật."

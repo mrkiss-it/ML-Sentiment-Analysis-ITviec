@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "policy": "locked final test evaluated once by TV4",
+  "model": "Logistic Regression + SMOTE",
+  "labels": [
+    "Negative",
+    "Neutral",
+    "Positive"
+  ],
+  "metrics": {
+    "test_count": 1683,
+    "accuracy": 0.7373737373737373,
+    "macro_f1": 0.57135314882083,
+    "weighted_f1": 0.7488930544157996,
+    "error_count": 442
+  },
+  "inference_seconds": 0.031002299998363014,
+  "cv_macro_f1": 0.572705,
+  "cv_to_final_gap": -0.0013518511791700272,
+  "model_sha256": "a6732e5970c4331fe8d1ab1ea16c00563a24dcb16ed070b39662d262457baaca",
+  "split_sha256": "e7fd70300538428fb4e5a26ef4d134d0dc307f6c64422e1089d020cf811bc0c7",
+  "data_sha256": "e8e13140ad607f0084a66cb2740c0b482a67d4b727d9cd15404e2ba3448ca8f9",
+  "figure": "reports/figures/tv4_final_test_confusion_matrix.png"
+}
