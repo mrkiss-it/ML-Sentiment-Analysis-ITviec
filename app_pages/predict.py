@@ -12,7 +12,7 @@ from src.tv4_analysis import InsufficientSignalError
 
 page_header(
     "Interactive inference",
-    "Đọc cảm xúc từ một review",
+    "Nhận diện cảm xúc từ review",
     "Nhập nội dung, chạy model và xem những tín hiệu đứng sau dự đoán.",
     [":blue-badge[TF-IDF + Logistic Regression]", ":gray-badge[3 lớp cảm xúc]"],
 )
