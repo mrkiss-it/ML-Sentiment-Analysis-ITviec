@@ -249,10 +249,10 @@ on lai	online
 onboard	bắt đầu làm việc
 onl	online
 onsite	làm việc tại trụ sở khách hàng
-ot	làm thêm giờ
+ot	ot
 outsource	gia công phần mềm
 outsourcing	gia công phần mềm
-overtime	làm thêm giờ
+overtime	ot
 oy	rồi
 package	gói lương thưởng
 phog	phong
