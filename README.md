@@ -173,6 +173,16 @@ python -m venv .venv
 
 Mở `http://localhost:8501`. Lần đầu vào trang dự đoán có thể mất vài giây để khởi tạo tokenizer; các lần suy luận sau được cache tài nguyên.
 
+### Bản sửa tiền xử lý đang dùng trong Web Demo
+
+Khi kiểm tra câu ngắn, nhóm phát hiện stopword đã xóa `thấp`, `nhiều`, `thiếu`, `cao`, `ít`, `nhanh`; `OT` bị đổi thành cụm không còn token, và `quan tâm` bị chuẩn hóa sai. Bản sửa giữ các tín hiệu này, fit lại TF-IDF và train lại Logistic Regression + SMOTE trên **đúng chỉ số hàng Development/Final Test cũ**. Artifacts mới ở `models/retrained_v2/` và Web Demo nạp cặp model/vectorizer tại đây.
+
+- Development 5-fold CV (fit lại TF-IDF trong từng fold cho cả hai bản): Macro F1 **0,5708 → 0,5815**.
+- Đối chiếu trên Final Test đã sử dụng trước đó: Accuracy **73,74% → 74,33%**, Macro F1 **0,5714 → 0,5764**, Recall Negative **44,74% → 45,61%**.
+- Snapshot và ma trận của bản sửa ở `reports/evaluation/retrained_v2/`; bản gốc được giữ nguyên tại `reports/evaluation/`.
+
+Đây là **đánh giá lại trên cùng Final Test**, không phải một tập kiểm thử độc lập mới. Bảng xếp hạng năm thuật toán và slide hiện có vẫn mô tả lần thử ban đầu; khi thuyết trình bản sửa, dùng các con số ở [báo cáo bản sửa](reports/retrained_v2_evaluation.md). Có thể tái lập bằng `scripts/retrain_sentiment_after_preprocessing.py`, sau đó `scripts/evaluate_retrained_v2.py`.
+
 Chạy kiểm thử:
 
 ```powershell
@@ -185,7 +195,7 @@ Chạy kiểm thử:
 
 ## 7. Bảng Theo dõi Tiến độ Dự án (Project Progress & Deliverables)
 
-*Cập nhật lần cuối: 17/09/2026 — TV1–TV4 đã hoàn thành các deliverable kỹ thuật ✅ | 35 tests pass | Final Test đã khóa | Web Demo sẵn sàng*
+*Cập nhật bản sửa tiền xử lý: 23/09/2026 — 37 tests pass | Web Demo dùng model huấn luyện lại | Final Test cũ được giữ để đối chiếu*
 
 | STT | Hạng mục công việc | Phụ trách chính | Trạng thái | Chi tiết kế hoạch bàn giao |
 | :---: | :--- | :--- | :---: | :--- |
