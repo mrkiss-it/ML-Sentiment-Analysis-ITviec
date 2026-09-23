@@ -5,13 +5,14 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
-from src.app_services import analyze_review, get_inference_bundle
+from src.app_services import analyze_review, load_json
 from src.app_theme import SENTIMENT_COLORS, page_header, section_label, style_chart
+from src.tv4_analysis import InsufficientSignalError
 
 
 page_header(
     "Interactive inference",
-    "Đọc cảm xúc từ một review",
+    "Nhận diện cảm xúc từ review",
     "Nhập nội dung, chạy model và xem những tín hiệu đứng sau dự đoán.",
     [":blue-badge[TF-IDF + Logistic Regression]", ":gray-badge[3 lớp cảm xúc]"],
 )
@@ -26,6 +27,13 @@ st.session_state.setdefault("predict_example", "Nhiều vế")
 st.session_state.setdefault("prediction_text", examples[st.session_state.predict_example])
 st.session_state.setdefault("ml_prediction", None)
 st.session_state.setdefault("ml_prediction_error", None)
+st.session_state.setdefault("ml_prediction_warning", None)
+current_model_sha = load_json("reports/evaluation/retrained_v2/final_test_snapshot.json")["model_sha256"]
+if st.session_state.get("ml_prediction_model_sha") != current_model_sha:
+    st.session_state.ml_prediction = None
+    st.session_state.ml_prediction_error = None
+    st.session_state.ml_prediction_warning = None
+    st.session_state.ml_prediction_model_sha = current_model_sha
 
 
 def sync_example_text() -> None:
@@ -34,6 +42,7 @@ def sync_example_text() -> None:
         st.session_state.prediction_text = examples[chosen]
         st.session_state.ml_prediction = None
         st.session_state.ml_prediction_error = None
+        st.session_state.ml_prediction_warning = None
 
 
 section_label("Phòng thử nghiệm")
@@ -57,19 +66,27 @@ with input_col:
         st.caption("Chọn mẫu hoặc nhập câu của bạn. Nhãn dự đoán có thể khác nhãn của tình huống mẫu.")
         if submitted:
             try:
-                # Load and warm the cached bundle before timing the review itself.
-                get_inference_bundle()
                 started = time.perf_counter()
-                result = analyze_review(review)
+                with st.spinner("Đang phân tích review…", show_time=True):
+                    result = analyze_review(review)
                 st.session_state.ml_prediction = {
                     "result": result,
                     "text": review,
                     "latency_ms": (time.perf_counter() - started) * 1000,
                 }
+                st.session_state.ml_prediction_model_sha = current_model_sha
                 st.session_state.ml_prediction_error = None
+                st.session_state.ml_prediction_warning = None
+            except InsufficientSignalError as error:
+                st.session_state.ml_prediction = None
+                st.session_state.ml_prediction_error = None
+                st.session_state.ml_prediction_warning = str(error)
             except Exception as error:
                 st.session_state.ml_prediction = None
                 st.session_state.ml_prediction_error = str(error)
+                st.session_state.ml_prediction_warning = None
+        if st.session_state.ml_prediction_warning:
+            st.warning(st.session_state.ml_prediction_warning, icon=":material/warning:")
         if st.session_state.ml_prediction_error:
             st.error(st.session_state.ml_prediction_error, icon=":material/error:")
 
@@ -108,13 +125,15 @@ with output_col:
             values = base.mark_text(align="left", dx=8, color="#dce5f2", font="JetBrains Mono", fontSize=12).encode(text=alt.Text("Probability:Q", format=".1%"))
             st.altair_chart(style_chart((bars + values).properties(height=132)), width="stretch")
             st.caption("Xác suất model chưa phải độ chính xác được bảo đảm cho từng review.")
+            if len(result["clean_text"].split()) <= 2:
+                st.warning("Review quá ngắn để có đủ ngữ cảnh. Hãy viết thêm chi tiết trước khi dùng kết quả.", icon=":material/warning:")
 
 if prediction is not None:
     result = prediction["result"]
     with st.container(horizontal=True, key="predict_metrics"):
         st.metric("Đặc trưng kích hoạt", f"{result['active_feature_count']:,}", border=True)
         with st.container(key="kpi_speed"):
-            st.metric("Thời gian dự đoán", f"{prediction['latency_ms']:.0f} ms", border=True)
+            st.metric("Thời gian xử lý", f"{prediction['latency_ms']:.0f} ms", border=True)
         st.metric("Số lớp cảm xúc", "3", border=True)
 
     section_label("Tín hiệu trong văn bản")

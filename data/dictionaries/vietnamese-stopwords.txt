@@ -154,7 +154,6 @@ bởi_vì
 bởi_vậy
 bởi_đâu
 bức
-cao
 cao_lâu
 cao_ráo
 cao_răng
@@ -848,12 +847,10 @@ ngồi_không
 ngồi_sau
 ngồi_trệt
 ngộ_nhỡ
-nhanh
 nhanh_lên
 nhanh_tay
 nhau
 nhiên_hậu
-nhiều
 nhiều_ít
 nhiệt_liệt
 nhung_nhăng
@@ -1236,7 +1233,6 @@ theo_bước
 theo_như
 theo_tin
 thi_thoảng
-thiếu
 thiếu_gì
 thiếu_điểm
 thoạt
@@ -1294,7 +1290,6 @@ thường_xuất_hiện
 thường_đến
 thảo_hèn
 thảo_nào
-thấp
 thấp_cơ
 thấp_thỏm
 thấp_xuống
@@ -1672,7 +1667,6 @@ yêu_cầu
 áng
 áng_như
 âu_là
-ít
 ít_biết
 ít_có
 ít_hơn

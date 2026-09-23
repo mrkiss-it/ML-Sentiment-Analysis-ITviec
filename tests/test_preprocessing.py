@@ -104,3 +104,10 @@ def test_core_unigrams_and_negations(preprocessor):
     assert neg_res["pos_w"] == 0, f"Không được bắt nhầm 'tốt' hay 'cao' thành pos_w, thực tế: {neg_res}"
     assert neg_res["sentiment_ratio"] == -1.0
 
+
+def test_sentiment_words_survive_preprocessing(preprocessor):
+    assert preprocessor.clean_advance_text("Công ty lương thấp, họp nhiều.") == "công_ty lương thấp họp nhiều"
+    assert preprocessor.clean_advance_text("OT nhiều.") == "ot nhiều"
+    assert preprocessor.clean_advance_text("Sếp quan tâm nhân viên.").find("quan_tâm") >= 0
+    assert "thiếu" in preprocessor.clean_advance_text("Quản lý thiếu minh bạch.").split()
+

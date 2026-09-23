@@ -24,6 +24,12 @@ from src.preprocessing import TextPreprocessor
 
 
 LABELS = ("Negative", "Neutral", "Positive")
+
+
+class InsufficientSignalError(ValueError):
+    """The trained vocabulary provides too little evidence for a prediction."""
+
+
 ASPECT_COLUMNS = (
     "Salary & benefits",
     "Training & learning",
@@ -214,11 +220,11 @@ def ensure_estimator_compatibility(estimator: object) -> None:
                 estimator.multi_class = "auto"
 
 
-def load_inference_bundle(project_root: str | Path) -> dict:
+def load_inference_bundle(project_root: str | Path, model_dir: str = "models") -> dict:
     """Load and validate the deployable text-only inference artifacts."""
     root = Path(project_root)
-    model_path = root / "models" / "best_sentiment_model.joblib"
-    vectorizer_path = root / "models" / "text_tfidf_vectorizer.joblib"
+    model_path = root / model_dir / "best_sentiment_model.joblib"
+    vectorizer_path = root / model_dir / "text_tfidf_vectorizer.joblib"
     model = joblib.load(model_path)
     ensure_estimator_compatibility(model)
     vectorizer = joblib.load(vectorizer_path)
@@ -258,6 +264,10 @@ def predict_review(bundle: dict, raw_text: str) -> dict:
     matrix = bundle["vectorizer"].transform([clean_text])
     if matrix.shape[1] != bundle["feature_count"]:
         raise ValueError("Chiều TF-IDF không khớp model.")
+    if matrix.nnz == 0:
+        raise InsufficientSignalError("Review không có từ nào trong từ vựng đã học; hãy nhập nội dung cụ thể hơn.")
+    if matrix.nnz == 1 and len(clean_text.split()) > 1:
+        raise InsufficientSignalError("Review chỉ còn một đặc trưng được model nhận ra; hãy mô tả cụ thể hơn để tránh dự đoán thiếu căn cứ.")
     probabilities = bundle["model"].predict_proba(matrix)[0]
     prediction = str(bundle["model"].classes_[int(np.argmax(probabilities))])
     names = bundle["vectorizer"].get_feature_names_out()

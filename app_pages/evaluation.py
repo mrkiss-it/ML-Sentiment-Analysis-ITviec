@@ -11,14 +11,14 @@ from src.app_theme import SENTIMENT_COLORS, page_header, section_label, style_ch
 page_header(
     "Final test laboratory",
     "Đánh giá & phân tích lỗi",
-    "Bằng chứng độc lập của model: chất lượng theo lớp, hướng nhầm lẫn và nguyên nhân phía sau từng dự đoán sai.",
-    [":green-badge[Run-once snapshot]", ":blue-badge[1,683 samples]", ":orange-badge[442 errors]", ":red-badge[Negative recall 44.7%]"],
+    "Kết quả bản sửa trên Final Test đã dùng trước đó, cùng các mẫu dự đoán sai để đọc trực tiếp.",
+    [":green-badge[Revised preprocessing]", ":blue-badge[1,683 samples]", ":orange-badge[432 errors]", ":red-badge[Negative recall 45.6%]"],
 )
 
-snapshot = load_json("reports/evaluation/final_test_snapshot.json")
-per_class = load_csv("reports/evaluation/final_test_per_class.csv")
-matrix = load_csv("reports/evaluation/confusion_matrix.csv").rename(columns={"Unnamed: 0": "Actual"})
-errors = load_csv("reports/evaluation/error_analysis_15_samples.csv")
+snapshot = load_json("reports/evaluation/retrained_v2/final_test_snapshot.json")
+per_class = load_csv("reports/evaluation/retrained_v2/final_test_per_class.csv")
+matrix = load_csv("reports/evaluation/retrained_v2/confusion_matrix.csv").rename(columns={"Unnamed: 0": "Actual"})
+errors = load_csv("reports/evaluation/retrained_v2/error_examples_15.csv")
 metrics = snapshot["metrics"]
 
 section_label("Kết quả trên tập kiểm thử độc lập")
@@ -73,19 +73,19 @@ with right:
         negative = per_class.loc[per_class["Label"] == "Negative"].iloc[0]
         st.warning(f"Negative là lớp khó nhất: Recall {negative['Recall']:.1%}, F1 {negative['F1']:.4f}.", icon=":material/warning:")
 
-section_label("Khám phá 15 lỗi đại diện")
+section_label("Khám phá 15 lỗi minh họa")
 with st.container(border=True, key="error_filters"):
     filters = st.columns([1, 1, 1.35], gap="medium")
     with filters[0]:
         actual = st.selectbox("Nhãn thật", ["Tất cả", *sorted(errors["actual"].unique())], key="eval_actual")
     with filters[1]:
-        reason = st.selectbox("Nhóm nguyên nhân", ["Tất cả", *sorted(errors["manual_category"].unique())], key="eval_reason")
+        reason = st.selectbox("Dạng lỗi gợi ý", ["Tất cả", *sorted(errors["error_reason"].unique())], key="eval_reason")
 
     filtered = errors.copy()
     if actual != "Tất cả":
         filtered = filtered[filtered["actual"] == actual]
     if reason != "Tất cả":
-        filtered = filtered[filtered["manual_category"] == reason]
+        filtered = filtered[filtered["error_reason"] == reason]
     filtered = filtered.reset_index(drop=True)
     if st.session_state.get("eval_filter_signature") != (actual, reason):
         st.session_state.eval_sample = 0 if not filtered.empty else None
@@ -109,8 +109,8 @@ else:
         top, score = st.columns([1.45, .55], gap="large")
         with top:
             st.caption(f"{sample['company']} · {int(sample['rating'])} SAO · SOURCE #{int(sample['source_index'])}")
-            st.subheader(str(sample["manual_category"]), icon=":material/troubleshoot:")
-            st.write(str(sample["manual_analysis"]))
+            st.subheader(str(sample["error_reason"]), icon=":material/troubleshoot:")
+            st.write("Đây là nhóm lỗi được gợi ý tự động. Đọc review bên dưới để xem vì sao nhãn thật và dự đoán khác nhau.")
         with score:
             st.metric("Confidence", f"{sample['confidence']:.1%}", border=True)
         with st.container(horizontal=True):
@@ -126,4 +126,4 @@ else:
         ).properties(height=105)
         st.altair_chart(style_chart(probability_chart), width="stretch")
 
-st.caption("15 mẫu được đọc và phân nhóm thủ công; toàn bộ 442 lỗi vẫn được lưu trong reports/evaluation để truy vết.")
+st.caption("15 lỗi minh họa được chọn từ 432 lỗi của bản sửa. Nhóm nguyên nhân là gợi ý tự động, chưa được gán nhãn thủ công.")

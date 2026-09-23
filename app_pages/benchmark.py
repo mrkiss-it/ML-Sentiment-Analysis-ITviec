@@ -8,12 +8,13 @@ from src.app_theme import page_header, section_label, style_chart
 page_header(
     "Model selection",
     "Benchmark mô hình",
-    "Năm thuật toán cạnh tranh trên Development set; chỉ model thắng cuộc được mở Final Test.",
-    [":blue-badge[Stratified 5-Fold CV]", ":green-badge[No test leakage]", ":gray-badge[Macro F1 ranking]"],
+    "Xếp hạng năm thuật toán ban đầu và kết quả của Logistic Regression sau khi sửa tiền xử lý.",
+    [":blue-badge[Stratified 5-Fold CV]", ":green-badge[Revised model]", ":gray-badge[Macro F1 ranking]"],
 )
 
 ranking = load_csv("reports/evaluation/model_ranking_cv.csv")
-snapshot = load_json("reports/evaluation/final_test_snapshot.json")
+snapshot = load_json("reports/evaluation/retrained_v2/final_test_snapshot.json")
+baseline = load_json("reports/evaluation/final_test_snapshot.json")
 
 section_label("Mô hình được chọn")
 with st.container(horizontal=True, key="overview_metrics"):
@@ -24,7 +25,7 @@ with st.container(horizontal=True, key="overview_metrics"):
         st.metric("Final Macro F1", f"{snapshot['metrics']['macro_f1']:.4f}", border=True)
     st.metric("Generalization gap", f"{snapshot['cv_to_final_gap']:+.4f}", help="Final Test − CV", border=True)
 
-section_label("Xếp hạng cross-validation")
+section_label("Xếp hạng cross-validation trên tiền xử lý gốc")
 chart_frame = ranking.sort_values("CV Macro F1 Mean").copy()
 chart_frame["Selected"] = chart_frame["Rank"].eq(1)
 chart_frame["Low"] = chart_frame["CV Macro F1 Mean"] - chart_frame["CV Macro F1 Std"]
@@ -61,5 +62,10 @@ with st.container(border=True, key="benchmark_table"):
         },
     )
 
-st.info("Final Test không được dùng để xếp hạng lại năm model. Đây là hàng rào chống test leakage của đồ án.", icon=":material/verified_user:")
+st.info(
+    f"Bảng 5 model thuộc lần thử ban đầu (Logistic Regression: {baseline['cv_macro_f1']:.4f}). "
+    f"Sau khi sửa tiền xử lý, Logistic Regression đạt {snapshot['cv_macro_f1']:.4f} qua 5-fold CV và là model app đang dùng. "
+    "Chưa xếp hạng lại bốn model còn lại trên bộ đặc trưng mới.",
+    icon=":material/info:",
+)
 st.caption("Refit Time là một lần fit cấu hình đã chọn trên toàn Development set tại máy local; không phải tổng thời gian GridSearchCV.")

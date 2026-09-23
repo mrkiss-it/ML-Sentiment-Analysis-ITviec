@@ -2844,7 +2844,6 @@ quadruple	bốn người
 quaint	cổ kính
 qualities	phẩm chất
 quality	chất lượng
-quan	quân
 quanh	quánh
 quanhtuy	quánh
 quarte	cãi nhau

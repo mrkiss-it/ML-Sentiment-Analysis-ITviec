@@ -1,0 +1,23 @@
+{
+  "schema_version": 2,
+  "policy": "Preprocessing revision selected on Development CV; previously used Final Test reused for transparent comparison",
+  "model": "Logistic Regression C=1.0 + SMOTE, revised preprocessing",
+  "labels": [
+    "Negative",
+    "Neutral",
+    "Positive"
+  ],
+  "metrics": {
+    "test_count": 1683,
+    "accuracy": 0.7433155080213903,
+    "macro_f1": 0.576390349527824,
+    "weighted_f1": 0.7539511876512074,
+    "error_count": 432
+  },
+  "cv_macro_f1": 0.581548076764115,
+  "cv_to_final_gap": -0.005157727236291043,
+  "model_sha256": "e6bce9e1c7e9d5c1a1b22ea7acd0050b85da372206b57f02898ce12fb0472dad",
+  "vectorizer_sha256": "fa754c99ea6a74b097613382a82b519698f682b80b42bcc54cc7f1fb3c7b2fbf",
+  "split_sha256": "e431a0b67a2950d61a5a4c728ffd2a800847718a511563b22ab6011ce83a5683",
+  "baseline_snapshot": "reports/evaluation/final_test_snapshot.json"
+}

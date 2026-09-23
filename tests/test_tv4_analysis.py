@@ -54,3 +54,21 @@ def test_load_inference_bundle_and_predict_review():
     assert sum(result["probabilities"].values()) == pytest.approx(1.0, rel=1e-3)
     assert result["active_feature_count"] > 0
     assert len(result["top_tokens"]) > 0
+
+    with pytest.raises(ValueError, match="không có từ nào trong từ vựng"):
+        predict_review(bundle, "abcdef xyzq")
+
+
+def test_retrained_demo_preserves_sentiment_terms():
+    from pathlib import Path
+    import pytest
+
+    bundle = load_inference_bundle(
+        Path(__file__).resolve().parents[1], model_dir="models/retrained_v2"
+    )
+    result = predict_review(bundle, "Công ty lương thấp, họp nhiều.")
+    assert result["clean_text"] == "công_ty lương thấp họp nhiều"
+    assert result["label"] == "Negative"
+
+    with pytest.raises(ValueError, match="chỉ còn một đặc trưng"):
+        predict_review(bundle, "công_ty rắn độc")

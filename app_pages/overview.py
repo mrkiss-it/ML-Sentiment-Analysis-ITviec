@@ -13,7 +13,7 @@ page_header(
 )
 
 data = load_reviews()
-snapshot = load_json("reports/evaluation/final_test_snapshot.json")
+snapshot = load_json("reports/evaluation/retrained_v2/final_test_snapshot.json")
 metrics = snapshot["metrics"]
 
 section_label("Dữ liệu & kết quả")
@@ -25,7 +25,7 @@ with st.container(horizontal=True, key="overview_metrics"):
     with st.container(key="kpi_speed"):
         st.metric("Final Test", f"{metrics['test_count']:,}", border=True)
     with st.container(key="kpi_positive"):
-        st.metric("Macro F1", f"{metrics['macro_f1']:.4f}", delta="-0.0014 vs CV", delta_color="off", border=True)
+        st.metric("Macro F1", f"{metrics['macro_f1']:.4f}", delta=f"{snapshot['cv_to_final_gap']:+.4f} vs CV", delta_color="off", border=True)
 
 left, right = st.columns([1.18, 1], gap="large")
 with left:
@@ -59,7 +59,7 @@ with right:
         st.altair_chart(style_chart(chart), width="stretch")
         positive_share = distribution.set_index("Sentiment").loc["Positive", "Share"]
         st.html(f'<div class="ml-hero-note">Positive chiếm <b>{positive_share:.1%}</b>. Macro F1 cho ba lớp trọng số ngang nhau, nên phản ánh tốt hơn năng lực trên lớp thiểu số.</div>')
-        st.caption("Final Test chỉ được mở sau khi TV3 khóa model để tránh test leakage.")
+        st.caption("Bản sửa được chọn bằng CV trên Development; Final Test cũ được dùng lại để đối chiếu, không phải test mới.")
 
 section_label("Bắt đầu khám phá")
 cards = st.columns(3, gap="medium")
