@@ -1,9 +1,9 @@
-# Kịch bản thuyết trình 12 phút (Bản rút gọn chuẩn năm 1)
+# Kịch bản thuyết trình khoảng 12 phút 40 giây (Bản rút gọn chuẩn năm 1)
 
 **Đề tài:** Phân tích cảm xúc đánh giá công ty ITviec
 **Vị thế người trình bày:** Sinh viên năm nhất UIT học môn Máy Học
 **Số slide:** 15 slide
-**Thời lượng mục tiêu:** 8 phút 30 giây (Slide lý thuyết) + 3 phút 30 giây (Live Demo) $\approx$ **12 phút tổng thể**
+**Thời lượng mục tiêu:** 8 phút 30 giây (Slide lý thuyết) + 4 phút 10 giây (Live Demo) $\approx$ **12 phút 40 giây tổng thể**
 **Phong cách trình bày:** Lễ phép, khiêm tốn, mạch lạc, giải thích bản chất dễ hiểu, tập trung vào điều nhóm đã làm được và nhìn nhận thẳng thắn hạn chế.
 
 ---
@@ -27,7 +27,7 @@
 | **Tổng kết**    |    13 | Đánh giá tổng quan & hạn chế cốt lõi              |           35s |            7:35 |
 |                         |    14 | Đóng góp & hướng phát triển tương lai            |           30s |            8:05 |
 |                         |    15 | Chuyển giao phần trình bày sang Live Demo             |           25s |            8:30 |
-| **Phần B**       |  Demo | Thao tác Streamlit thực tế (Duy Khang)                 |        3m 30s | **12:00** |
+| **Phần B**       |  Demo | Thao tác Streamlit thực tế (Duy Khang)                 |        4m 10s | **12:40** |
 
 ---
 
@@ -223,7 +223,7 @@
 
 ---
 
-# PHẦN B — KỊCH BẢN LIVE DEMO (3:30)
+# PHẦN B — KỊCH BẢN LIVE DEMO (4:10)
 
 *(Người thao tác & thuyết minh: Nguyễn Duy Khang)*
 
@@ -238,7 +238,8 @@
 * Cuộn xuống WordCloud: Bấm sang **Tích cực** để thấy các từ khóa khen ngợi, sau đó bấm lại **Tiêu cực** và chỉ vào các từ như *'ot'*, *'lương'*, *'dự_án'*.
 
 > **Lời nói:**
-> "Đầu tiên là trang Insight doanh nghiệp. Khi em chọn FPT Software, biểu đồ cho thấy tỷ lệ Tích cực chiếm 57,7%, nhưng điểm Lương & phúc lợi lại ở mức thấp nhất. Phía dưới là bản đồ từ khóa: khi em chuyển sang nhóm Tiêu cực, các cụm từ nổi cộm như 'ot', 'lương' và 'áp lực' xuất hiện với tần suất rất cao."
+> "Đầu tiên... em mở trang Insight doanh nghiệp. Trang này cho thấy tỷ lệ review Tích cực, Trung tính, Tiêu cực của từng công ty... cùng điểm đánh giá về lương, quản lý và văn hóa.
+> Phía dưới là bản đồ từ khóa: khi em chuyển sang nhóm Tiêu cực, các cụm từ nổi cộm như 'ot', 'lương' và 'áp lực' xuất hiện với tần suất rất cao."
 
 ---
 
@@ -251,24 +252,31 @@
 * Cuộn xuống khung **Khám phá 15 lỗi minh họa**: Lọc nhãn thật **Negative**, bấm chọn review `#2592`.
 
 > **Lời nói:**
-> "Tiếp theo là trang Mô hình & đánh giá. Phần trên là kết quả so sánh 5 thuật toán ban đầu. Cuộn xuống ma trận nhầm lẫn, Thầy có thể thấy mô hình tìm đúng 52 trên 114 review tiêu cực.
+> "Tiếp theo là trang Mô hình & đánh giá. Phần trên là kết quả so sánh 5 thuật toán ban đầu. Cuộn xuống ma trận nhầm lẫn, Thầy có thể thấy mô hình tìm đúng 52 trên 114 review tiêu cực và bị nhầm mất 62 review.
 > Ngay bên dưới, nhóm thiết kế bảng đọc lỗi trực quan. Ví dụ mẫu 2592: review này người viết vừa khen môi trường nhưng lại chê lương thấp và hay OT, chính vì câu chứa cả hai thái cực nên mô hình đã dự đoán nhầm sang Trung tính."
 
 ---
 
-### Bước 3: Phân tích review theo thời gian thực (1 phút 20 giây)
+### Bước 3: Phân tích review theo thời gian thực (2 phút)
 
 **Thao tác:** Bấm tab **Phân tích review** ở menu bên trái.
 
-* Bấm tình huống mẫu **Nhiều vế** *(“Môi trường tốt nhưng lương thấp và quản lý chưa thật sự quan tâm nhân viên”)* $\rightarrow$ Ứng dụng tự động phân tích ngay lập tức.
-* Đọc kết quả bên phải: Nhãn **Trung tính (58,7%)**, chỉ vào 3 thanh xác suất (Tiêu cực vẫn chiếm 30,0%).
-* Cuộn xuống khung văn bản sau chuẩn hóa: chỉ từ *'môi_trường'*, *'lương thấp'* và bảng Token TF-IDF nổi bật.
-* *(Nếu còn thời gian)*: Bấm thêm mẫu **Tiêu cực** *(“Lương thấp, quản lý thiếu minh bạch…”)* để Thầy thấy mô hình bắt đúng 99,0% nhãn Tiêu cực.
+* Lần lượt bấm bốn mẫu **Tích cực → Trung tính → Tiêu cực → Nhiều vế**. Mỗi lần chọn, ứng dụng tự phân tích; chỉ nhanh vào nhãn kết quả và ba thanh xác suất.
+* Ở mẫu **Nhiều vế**, dừng lại lâu hơn: chỉ **Trung tính 58,7%** và thanh **Tiêu cực 30,0%** để giải thích vì sao không nên đọc một nhãn riêng lẻ.
+* Cuộn xuống khung **Từ review đến vector**: chỉ *'môi_trường'*, *'lương thấp'*, *'chưa'*, rồi chuyển sang bảng **Token TF-IDF nổi bật**.
 
 > **Lời nói:**
-> "Bây giờ em xin thử nghiệm phân tích một review thực tế. Khi em bấm mẫu tình huống 'Nhiều vế', hệ thống tự động xử lý ngay lập tức: kết quả dự đoán là **Trung tính 58,7%**, nhưng thanh Tiêu cực vẫn chiếm tới 30,0%.
-> Kéo xuống phần tín hiệu, văn bản đã được tách từ chuẩn xác thành 'môi_trường', giữ lại 'lương thấp' và 'chưa'. Bảng TF-IDF bên cạnh bóc tách các đặc trưng nổi bật nhất đưa vào bộ phân loại.
-> *(Tùy chọn)*: Nếu thử câu hoàn toàn tiêu cực về OT không lương, mô hình nhận diện chính xác 99,0% lớp Tiêu cực ạ."
+> "Bây giờ em chuyển sang phân tích review mới. Trên màn hình có bốn mẫu để thử; em sẽ bấm lần lượt và ứng dụng tự đưa ra kết quả cho từng câu.
+>
+> (Ví dụ lời khen) Đầu tiên là lời khen về môi trường và đồng nghiệp. Model dự đoán **Tích cực, khoảng 66,7%**.
+
+> (Vd trung tính)  Tiếp theo, câu nói công việc ổn và quy trình bình thường được dự đoán **Trung tính, khoảng 93,1%**.
+>
+> (Vd tiêu cực) Bây giờ em thử lời phàn nàn về lương thấp, quản lý thiếu minh bạch và OT không lương. Model dự đoán **Tiêu cực, khoảng 99% cho câu này**. Các từ 'thấp', 'thiếu' và 'không' được giữ ở bước tiền xử lý để không làm mất ý chê.
+>
+> (vd nhiều vế) Cuối cùng là mẫu 'Nhiều vế': vừa khen môi trường tốt, vừa chê lương thấp và quản lý chưa quan tâm. Model chọn **Trung tính, khoảng 58,7%**, nhưng Tiêu cực cũng khoảng **30%**. Ba thanh là mức model nghiêng về từng nhãn đối với câu này, không phải độ chính xác chung. Với review nhiều ý, mình cần đọc cả nội dung thay vì chỉ nhìn nhãn.
+>
+> Em cuộn xuống xem hệ thống xử lý mẫu này. Bên trái là câu sau chuẩn hóa và tách từ, như 'môi_trường'; 'lương thấp' và 'chưa' vẫn được giữ. Bên phải là những token TF-IDF nổi bật trong vector số đưa vào Logistic Regression. Một token có trọng số cao không tự quyết định nhãn; model kết hợp các đặc trưng để tính ba xác suất phía trên."
 
 ---
 

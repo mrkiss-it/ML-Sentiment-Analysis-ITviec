@@ -8,8 +8,8 @@ Key highlights:
     - Removes semicolons (;) from presentation titles:
         Slide 08: 'Xếp hạng gốc – Logistic Regression cải thiện sau sửa lỗi'
         Slide 09: 'Bản sửa cải thiện nhẹ, nhưng lớp Negative vẫn khó'
-    - Ensures clear slide transitions matching the 12-minute script:
-        Slide 14: 'Kết thúc nội dung chính. Tiếp theo: live demo.'
+    - Ensures clear slide transitions matching the presentation script:
+        Slide 14: invites Nguyễn Duy Khang to present the live demo.
         Slide 15: 'Sau trang này, nhóm chuyển sang ứng dụng Streamlit để thao tác trực tiếp.'
     - Handles Windows PowerPoint file locking gracefully (saves to _updated.pptx fallback if locked).
 """
@@ -711,9 +711,7 @@ def s15_closing(prs):
 
     card(s, x, 4.35, w, 2.4, fill=blend(SURF, MINT, 0.08), line=blend(BG, MINT, 0.5))
     text(s, x + 0.3, 4.6, w - 0.6, 0.35, "CHUYỂN TIẾP TRÌNH BÀY", size=11, color=BLUE, bold=True, font=MONO)
-    # Câu chuyển tiếp Slide 14 chuẩn xác
-    text(s, x + 0.3, 5.0, w - 0.6, 0.8, "Kết thúc nội dung chính. Tiếp theo: live demo.", size=20, bold=True, color=MINT)
-    text(s, x + 0.3, 5.85, w - 0.6, 0.7,
+    text(s, x + 0.3, 5.3, w - 0.6, 0.9,
          ["Nhóm xin mời bạn Nguyễn Duy Khang trình bày phần live demo.", "Phiên hỏi đáp (Q&A) sẽ bắt đầu sau phần thao tác."],
          size=13, color=MUTED, spacing=3)
 
@@ -940,15 +938,15 @@ def sync_existing_presentation(prs: Presentation) -> int:
             mod_count += 1
             print("[*] Slide 12: Đã thêm hộp review minh họa 'Lương thấp, quản lý thiếu minh bạch...'")
 
-    # Slide 14 transition
+    # Slide 14 transition: remove the redundant closing line from existing decks.
     if len(prs.slides) >= 14:
         s14 = prs.slides[13]
         for sp in s14.shapes:
             if sp.has_text_frame and "Kết thúc nội dung chính" in sp.text_frame.text:
-                for p in sp.text_frame.paragraphs:
-                    for r in p.runs:
-                        if "Kết thúc nội dung chính" in r.text:
-                            r.text = "Kết thúc nội dung chính. Tiếp theo: live demo."
+                sp.text = ""
+            elif sp.has_text_frame and "Nhóm xin mời bạn Nguyễn Duy Khang" in sp.text_frame.text:
+                sp.top = Inches(5.3)
+                sp.height = Inches(0.9)
 
     # Slide 15 transition
     if len(prs.slides) >= 15:
