@@ -112,6 +112,8 @@ tfidf(t, d) = (1 + log tf(t, d)) × log((1 + N) / (1 + df(t))) + 1
 
 trong đó `tf(t, d)` là tần suất xuất hiện, `df(t)` là số văn bản chứa từ và `N` là tổng số văn bản. Thành phần `sublinear_tf` giảm ảnh hưởng của việc lặp từ nhiều lần trong cùng một đánh giá, còn `min_df=2` loại bỏ các từ chỉ xuất hiện một lần vốn phần lớn là lỗi chính tả.
 
+Các số liệu trong mục 3.2 tương ứng với danh sách từ dừng gốc. Phiên bản hiệu chỉnh sau đó giữ lại sáu từ chỉ mức độ *cao*, *nhanh*, *nhiều*, *thiếu*, *thấp*, *ít* và chuẩn hóa *ot*, *overtime* về token `ot`. Với cùng phép chia dữ liệu, Logistic Regression kết hợp SMOTE đạt Macro F1 5-fold CV 0,5815 so với 0,5708 của bản gốc khi TF-IDF được huấn luyện lại trong từng fold. Chi tiết được trình bày tại `reports/retrained_v2_evaluation.md`.
+
 ### 3.2.2. Thiết kế thực nghiệm và phân chia dữ liệu
 
 Dữ liệu được chia phân tầng theo nhãn thành tập phát triển 80% và tập kiểm thử cuối 20% với `random_state=2026`. Tập kiểm thử cuối được khóa và không tham gia vào bất kỳ bước lựa chọn đặc trưng hay đo hiệu năng nào trong phần này, nhằm bảo toàn tính độc lập cho khâu đánh giá cuối cùng.

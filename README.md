@@ -134,6 +134,7 @@ Do_An_May_Hoc_Sentiment_Analysis/
 │   ├── overview_for_team.md # Tài liệu tóm tắt logic dự án dễ hiểu cho cả nhóm
 │   ├── eda_feature_engineering.md # Báo cáo chi tiết EDA & Trích xuất đặc trưng
 │   ├── final_report_outline.md # Đề cương chi tiết báo cáo đồ án
+│   ├── final_report/            # Báo cáo toàn văn Word (6 chương, 14 hình, 23 bảng)
 │   ├── project_plan_and_work_assignment.md # Bảng phân công & timeline nhóm 4 người
 │   └── member_plans/        # Kế hoạch hành động chi tiết của 4 thành viên
 ├── requirements.txt         # Danh sách thư viện Python cần thiết
@@ -204,6 +205,6 @@ Chạy kiểm thử:
 | **3** | **Phân tích EDA & Trích xuất TF-IDF** | **TV2: Văn Duy** | ✅ **Hoàn thành** | Notebook `01_data_exploration_eda.ipynb` đã chạy đủ output; 9 biểu đồ 300 DPI tại `reports/figures/`; `src/features.py` + 11 test pass; Stratified 80/20 seed 2026 (development 6.731 / final test 1.683 khóa); artifacts `text_tfidf_vectorizer.joblib`, `text_feature_extractor.joblib`, `train_test_features.joblib`, `artifact_manifest.json` (có checksum + runtime). CV development: TF-IDF (1,2) Macro F1 **0,5722**. Báo cáo: `reports/eda_feature_engineering.md`. |
 | **4** | **Huấn luyện Mô hình Machine Learning** | **TV3: Duy Khang** | ✅ **Hoàn thành** | `03_sentiment_modeling_ml.ipynb` + `src/models.py` (12 test pass): so sánh `class_weight='balanced'` vs SMOTE (SMOTE bọc trong Pipeline theo từng fold, chống leakage), GridSearchCV tune 5 thuật toán (Naive Bayes, Logistic Regression, Linear SVM, Random Forest, Stacking Ensemble `[MNB,LR,SVM,RF]→LR`) bằng Stratified 5-Fold CV trên Development set (`X_train`, không đụng Final Test). Model tốt nhất: **Logistic Regression** (`C=1.0`, SMOTE), CV Macro F1 **0,5727**, khóa tại `models/best_sentiment_model.joblib`. Báo cáo: [reports/modeling_hyperparameter_tuning.md](reports/modeling_hyperparameter_tuning.md). |
 | **5** | **Đánh giá Final Test, Insight & Demo** | **TV4: Thành Trung** | ✅ **Hoàn thành** | Final Test run-once: Accuracy **73,74%**, Macro F1 **0,5714**; có per-class metrics, Confusion Matrix, 15 mẫu Error Analysis, 12 WordCloud, 5 company case study và Web Demo Streamlit. |
-| **6** | **Tổng hợp Báo cáo Word & Slide trình chiếu** | **TV1 & Cả nhóm** | ⏳ **Giai đoạn cuối** | Slide PowerPoint 15 trang đã có tại `reports/slides/ITviec_Sentiment_Analysis.pptx`; báo cáo Word/PDF cần hoàn thiện theo đề cương `reports/De_Cuong_Do_An_Mon_Hoc_May_Hoc.md`. |
+| **6** | **Tổng hợp Báo cáo Word & Slide trình chiếu** | **TV1 & Cả nhóm** | ⏳ **Giai đoạn cuối** | Slide PowerPoint 15 trang đã có tại `reports/slides/ITviec_Sentiment_Analysis.pptx`; bản thảo báo cáo Word 6 chương tại `reports/final_report/Bao_Cao_Do_An_May_Hoc_ITviec.docx` (đã có trang bìa theo mẫu khoa, gồm mục 4.8 về bản Retrained v2, cần cập nhật mục lục và xuất PDF). |
 
 
