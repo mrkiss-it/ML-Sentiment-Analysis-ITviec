@@ -55,7 +55,7 @@ MONO = "Consolas"
 W, H = 13.333, 7.5
 MX = 0.6
 CW = W - 2 * MX
-TOTAL = 15
+TOTAL = 18
 
 
 def rgb(h: str) -> RGBColor:
@@ -424,9 +424,111 @@ def s07_models(prs):
             arrow(s, x + bw2 + 0.1, 5.3, 0.43, 0.3, c)
 
 
+def s08_metric_selection(prs):
+    s = new_slide(prs, 8, "07 · Thước đo", "Chọn theo Accuracy hay Macro F1?", 35,
+                  "Thí nghiệm bổ sung theo góp ý giảng viên: giữ Logistic Regression C=1,0, cùng 6.731 review Development và 5-fold CV. "
+                  "Chọn theo Accuracy ra cấu hình không cân bằng với Accuracy 0,7705 nhưng Macro F1 0,4702. "
+                  "Chọn theo Macro F1 ra class weight với Macro F1 0,5839 và Accuracy 0,7326. Model demo hiện vẫn dùng SMOTE, Macro F1 0,5815. (~35s)")
+    items = [("DỮ LIỆU", "6.731 review", BLUE), ("CV", "5 folds", MINT),
+             ("MODEL", "Logistic Regression", YELLOW), ("NGRAM", "1 / 2 / 1+2", ORANGE),
+             ("XỬ LÝ", "Không / CW / SMOTE", RED)]
+    bw, gap = 2.2, 0.25
+    for i, (tag, value, color) in enumerate(items):
+        x = MX + i * (bw + gap)
+        text(s, x, 1.82, bw, 0.35, tag, size=12, color=color, bold=True, font=MONO)
+        text(s, x, 2.28, bw, 0.65, value, size=16, bold=True)
+    card(s, MX, 3.45, CW, 2.95)
+    text(s, MX + 0.3, 3.65, 8.2, 0.35, "CÙNG DỰ ĐOÁN · HAI THƯỚC ĐO CHỌN CẤU HÌNH", size=11, color=BLUE, bold=True, font=MONO)
+    stages = [("Unigram + CW", "F1 0,5645", BLUE), ("Bigram + CW", "F1 0,5510", ORANGE),
+              ("1+2 · Accuracy", "Acc 0,7705 · F1 0,4702", MINT),
+              ("1+2 · Macro F1", "F1 0,5839 · Acc 0,7326", YELLOW)]
+    bw2, gap2 = 2.5, 0.63
+    for i, (title, body, color) in enumerate(stages):
+        x = MX + 0.3 + i * (bw2 + gap2)
+        card(s, x, 4.25, bw2, 1.65, fill=blend(SURF, color, 0.08), line=blend(BG, color, 0.6))
+        text(s, x + 0.2, 4.45, bw2 - 0.4, 0.35, title, size=15, color=color, bold=True)
+        text(s, x + 0.2, 4.95, bw2 - 0.4, 0.6, body, size=12, color=MUTED)
+        if i < 3:
+            arrow(s, x + bw2 + 0.1, 4.93, 0.43, 0.3, color)
+    text(s, MX + 0.3, 6.12, CW - 0.6, 0.35,
+         "F1 không bật/tắt khi train. Accuracy chọn không cân bằng; Macro F1 chọn class weight. Demo vẫn dùng SMOTE.",
+         size=12, color=MUTED)
+
+
+def s09_ngram(prs):
+    s = new_slide(prs, 9, "08 · N-gram", "Kết hợp unigram + bigram cho F1 cao hơn", 35,
+                  "Cùng Logistic Regression C=1 và Development 5-fold CV. Bộ ba điểm là Macro F1 theo thứ tự "
+                  "không xử lý / class weight / SMOTE. Unigram: 0,4624 / 0,5645 / 0,5582; "
+                  "bigram: 0,4239 / 0,5510 / 0,5369; kết hợp: 0,4702 / 0,5839 / 0,5815. "
+                  "Mốc không dùng văn bản luôn đoán lớp đông nhất: Accuracy 0,7376, Macro F1 0,2830. "
+                  "Nguồn: reports/evaluation/metric_selection_ablation.json.")
+    items = [("U1", ".462/.565/.558", BLUE), ("B2", ".424/.551/.537", MINT),
+             ("U1+B2", ".470/.584/.582", YELLOW), ("MỐC", "Acc .738 · F1 .283", ORANGE),
+             ("CV", "6.731 / 5 folds", RED)]
+    bw, gap = 2.2, 0.25
+    for i, (tag, value, color) in enumerate(items):
+        x = MX + i * (bw + gap)
+        text(s, x, 1.82, bw, 0.35, tag, size=12, color=color, bold=True, font=MONO)
+        text(s, x, 2.28, bw, 0.65, value, size=15, bold=True)
+    card(s, MX, 3.45, CW, 2.95)
+    text(s, MX + 0.3, 3.65, 9, 0.35, "MACRO F1: KHÔNG XỬ LÝ / CLASS WEIGHT / SMOTE", size=11, color=BLUE, bold=True, font=MONO)
+    stages = [("Unigram", "Từ đơn", BLUE), ("Bigram", "Cụm hai từ", ORANGE),
+              ("Kết hợp", "Giữ cả hai loại", MINT), ("Không văn bản", "Đoán lớp đông", YELLOW)]
+    bw2, gap2 = 2.5, 0.63
+    for i, (title, body, color) in enumerate(stages):
+        x = MX + 0.3 + i * (bw2 + gap2)
+        card(s, x, 4.25, bw2, 1.65, fill=blend(SURF, color, 0.08), line=blend(BG, color, 0.6))
+        text(s, x + 0.2, 4.45, bw2 - 0.4, 0.35, title, size=15, color=color, bold=True)
+        text(s, x + 0.2, 4.95, bw2 - 0.4, 0.6, body, size=12, color=MUTED)
+        if i < 3:
+            arrow(s, x + bw2 + 0.1, 4.93, 0.43, 0.3, color)
+    text(s, MX + 0.3, 6.12, CW - 0.6, 0.35,
+         "Ở cả ba cách cân bằng lớp, kết hợp unigram + bigram đều cao hơn từng loại riêng.", size=12, color=MUTED)
+
+
+def s09_imbalance_by_model(prs):
+    payload = json.loads((EVAL / "model_imbalance_ablation.json").read_text(encoding="utf-8"))
+    rows = payload["rows"]
+    model_names = [
+        ("NB", "Multinomial Naive Bayes"), ("LR", "Logistic Regression"),
+        ("SVM", "Linear SVM"), ("RF", "Random Forest"), ("STK", "Stacking Ensemble"),
+    ]
+    strategies = ("Không xử lý", "Class weight", "SMOTE")
+
+    def score(name, strategy):
+        row = next(r for r in rows if r["model"] == name and r["strategy"] == strategy)
+        return f"{row['cv_macro_f1_mean']:.3f}"[1:] if row["status"] == "measured" else "N/A"
+
+    s = new_slide(prs, 10, "09 · Cân bằng lớp", "Class weight tác động khác nhau ở 5 mô hình", 35,
+                  "Thứ tự điểm trong mỗi cột: không xử lý / class weight / SMOTE. "
+                  "Naive Bayes không hỗ trợ class_weight; trong Stacking chỉ các thành phần LR, SVM, RF và meta LR có class_weight. "
+                  "Điểm được đo trên Development CV cùng tiền xử lý mới, không phải Final Test.")
+    colors = (BLUE, MINT, YELLOW, ORANGE, RED)
+    bw, gap = 2.2, 0.25
+    for i, ((tag, name), color) in enumerate(zip(model_names, colors)):
+        x = MX + i * (bw + gap)
+        text(s, x, 1.82, bw, 0.35, tag, size=12, color=color, bold=True, font=MONO)
+        text(s, x, 2.16, bw, 1.0, [score(name, strategy) for strategy in strategies], size=14, bold=True)
+    card(s, MX, 3.45, CW, 2.95)
+    text(s, MX + 0.3, 3.65, 8, 0.35, "MACRO F1: KHÔNG XỬ LÝ / CLASS WEIGHT / SMOTE", size=11, color=BLUE, bold=True, font=MONO)
+    stages = [("Không xử lý", "Dữ liệu gốc", BLUE), ("Class weight", "LR/RF tăng F1", ORANGE),
+              ("SMOTE", "SVM nhỉnh hơn", MINT), ("Cùng 5 folds", "NB không có CW", YELLOW)]
+    bw2, gap2 = 2.5, 0.63
+    for i, (title, body, color) in enumerate(stages):
+        x = MX + 0.3 + i * (bw2 + gap2)
+        card(s, x, 4.25, bw2, 1.65, fill=blend(SURF, color, 0.08), line=blend(BG, color, 0.6))
+        text(s, x + 0.2, 4.45, bw2 - 0.4, 0.35, title, size=15, color=color, bold=True)
+        text(s, x + 0.2, 4.95, bw2 - 0.4, 0.6, body, size=12, color=MUTED)
+        if i < 3:
+            arrow(s, x + bw2 + 0.1, 4.93, 0.43, 0.3, color)
+    text(s, MX + 0.3, 6.12, CW - 0.6, 0.35,
+         "NB: Naive Bayes · LR: Logistic · SVM: Linear SVM · RF: Random Forest · STK: Stacking",
+         size=12, color=MUTED)
+
+
 def s08_leaderboard(prs, cv, m):
     # SỬA TIÊU ĐỀ: Bỏ dấu ; -> dùng gạch ngang –
-    s = new_slide(prs, 8, "07 · Kết quả CV", "Xếp hạng gốc – Logistic Regression cải thiện sau sửa lỗi", 40,
+    s = new_slide(prs, 11, "10 · Kết quả CV", "Năm mô hình: Logistic Regression dẫn đầu", 40,
                   "Xếp hạng ban đầu: LR (0,5727) và SVM (0,5724) bám sát nhau. Chọn LR vì trả xác suất. "
                   "Sau sửa tiền xử lý, chạy phép CV riêng tăng lên 0,5815 (không trừ điểm trực tiếp vào bảng cũ). (~40s)")
     cd = CategoryChartData()
@@ -473,7 +575,7 @@ def s08_leaderboard(prs, cv, m):
 
 def s09_final_test(prs, m, cm, per_class):
     # SỬA TIÊU ĐỀ: Bỏ dấu ; -> dùng dấu phẩy ', nhưng'
-    s = new_slide(prs, 9, "08 · Final Test", "Bản sửa cải thiện nhẹ, nhưng lớp Negative vẫn khó", 45,
+    s = new_slide(prs, 12, "11 · Final Test", "Bản sửa cải thiện nhẹ, nhưng lớp Negative vẫn khó", 45,
                   "Final Test cũ: Accuracy 74,33%, Macro F1 0,5764, sai 432 mẫu. Lớp Negative: tìm đúng 52/114 mẫu, "
                   "Recall chỉ đạt 45,6% (F1 0,3910). Nhận diện lời chê là thách thức lớn nhất của bài toán. (~45s)")
     acc = f"{float(m['accuracy']) * 100:.2f}%".replace(".", ",")
@@ -538,24 +640,25 @@ def s09_final_test(prs, m, cm, per_class):
 
 
 def s10_errors(prs, m):
-    s = new_slide(prs, 10, "09 · Error Analysis", "15 lỗi minh họa cho thấy ba dạng khó thường gặp", 35,
-                  "Phân loại 15 ca lỗi minh họa: 7 ca review nhiều vế đối lập (vừa khen vừa chê), 6 ca cấu trúc "
-                  "phủ định khó, 2 ca nhãn rating chưa rõ. Giúp hiểu ranh giới của mô hình tuyến tính. (~35s)")
-    err, tot = int(m["error_count"]), int(m["test_count"])
+    s = new_slide(prs, 13, "12 · Error Analysis", "15 lỗi bản gốc cho thấy ba dạng khó", 35,
+                  "Báo cáo phân tích thủ công 15 lỗi có độ tin cậy cao nhất của phiên bản gốc: "
+                  "10 ca cảm xúc đan xen, 4 ca nhãn yếu nhiễu và 1 review dài nhiều khía cạnh. "
+                  "Đây không phải thống kê phân loại toàn bộ lỗi của model đã sửa. (~35s)")
+    err, tot = 442, 1683  # Phiên bản gốc ở báo cáo, mục 4.5 và 5.1.
     card(s, MX, 1.8, 3.2, 4.95, fill=SURF2, line=blend(BG, RED, 0.4))
     text(s, MX + 0.3, 2.05, 2.6, 0.3, "DỰ ĐOÁN SAI", size=11, color=RED, bold=True, font=MONO)
     text(s, MX + 0.3, 2.45, 2.7, 1.0, str(err), size=60, bold=True, color=RED, font=MONO)
     text(s, MX + 0.3, 3.55, 2.6, 0.5, f"trên {tot:,} mẫu".replace(",", "."), size=15, color=MUTED)
     text(s, MX + 0.3, 4.2, 2.6, 0.8, f"{err / tot * 100:.1f}% của Final Test".replace(".", ","), size=20, bold=True)
-    text(s, MX + 0.3, 5.1, 2.6, 1.4, "15 lỗi được nhóm tự động theo dấu hiệu văn bản; không đại diện toàn bộ 432 lỗi.",
+    text(s, MX + 0.3, 5.1, 2.6, 1.4, "15 lỗi có độ tin cậy cao nhất được đọc và phân loại thủ công.",
          size=12, color=MUTED)
     cards = [
-        ("Review nhiều vế ý · 7/15", "Một review vừa khen vừa chê, nên khó gói vào một nhãn duy nhất.",
+        ("Cảm xúc đan xen · 10/15", "Một review vừa khen vừa chê, nên khó gói vào một nhãn duy nhất.",
          "Ví dụ: khen môi trường nhưng phàn nàn về OT, lương hoặc quản lý.", YELLOW),
-        ("Phủ định hoặc cấu trúc khó · 6/15", "Từ phủ định và câu dài khiến tín hiệu TF-IDF khó diễn giải.",
-         "Từ ngữ đảo ngược ý nghĩa trong ngữ cảnh phức tạp.", ORANGE),
-        ("Nhãn hoặc tín hiệu chưa rõ · 2/15", "Rating và nội dung có thể lệch nhau; một số câu có ít từ model nhận ra.",
-         "Review ngắn hoặc nhãn rating sinh nhãn chưa khớp.", BLUE),
+        ("Nhiễu nhãn · 4/15", "Nội dung review có thể khác với nhãn suy ra từ rating.",
+         "Ví dụ: chấm sao cao nhưng nội dung chủ yếu phàn nàn.", ORANGE),
+        ("Review dài nhiều khía cạnh · 1/15", "Nhiều ý và thời điểm khó gói trong một nhãn chung.",
+         "Phân tích theo khía cạnh sẽ phù hợp hơn.", BLUE),
     ]
     x0, w = MX + 3.5, CW - 3.5
     for i, (t, d, ex, c) in enumerate(cards):
@@ -568,7 +671,7 @@ def s10_errors(prs, m):
 
 
 def s11_insight(prs, dist):
-    s = new_slide(prs, 11, "10 · Insight doanh nghiệp", "Salary & benefits thấp nhất ở 4/5 công ty", 35,
+    s = new_slide(prs, 14, "13 · Insight doanh nghiệp", "Salary & benefits thấp nhất ở 4/5 công ty", 35,
                   "Khám phá 5 công ty: Lương & đãi ngộ thấp nhất ở 4/5 công ty, riêng VNG thấp nhất ở Quản lý. "
                   "Đây là phân tích mô tả trên dữ liệu thu thập, nhóm không xếp hạng công ty thực tế. (~35s)")
     order = ["KMS Technology", "VNG Corporation", "NashTech", "FPT Software",
@@ -616,7 +719,7 @@ def s11_insight(prs, dist):
 
 
 def s13_features(prs):
-    s = new_slide(prs, 12, "11 · Diễn giải", "TF-IDF cho biết độ nổi bật, không cho biết chiều tác động", 35,
+    s = new_slide(prs, 15, "14 · Diễn giải", "TF-IDF cho biết độ nổi bật, không cho biết chiều tác động", 35,
                   "Minh họa câu test OT không lương: Bản sửa nhận diện Tiêu cực 99,0%. Bigram 'thường_xuyên ot', "
                   "'không lương' nổi bật rõ nét. Trục biểu đồ nhân 100 để quan sát, không phải xác suất. (~35s)")
     tokens = [("xuyên", 0.615), ("lý", 0.606), ("không lương", 0.384),
@@ -664,7 +767,7 @@ def s13_features(prs):
 
 
 def s14_lessons(prs):
-    s = new_slide(prs, 13, "12 · Đánh giá", "Bản sửa tốt hơn một chút, nhưng lớp Negative vẫn khó", 35,
+    s = new_slide(prs, 16, "15 · Đánh giá", "Bản sửa tốt hơn một chút, nhưng lớp Negative vẫn khó", 35,
                   "Nhóm sinh viên năm nhất hoàn thành trọn vẹn pipeline học máy. Hạn chế: nhãn yếu từ rating, "
                   "Negative F1 chỉ 0,3910, mô hình TF-IDF chưa hiểu ngữ nghĩa sâu của câu phức. (~35s)")
     cols = [
@@ -685,7 +788,7 @@ def s14_lessons(prs):
 
 
 def s15_closing(prs):
-    s = new_slide(prs, 14, "13 · Kết luận", "Đóng góp của đồ án và bước phát triển tiếp theo", 30,
+    s = new_slide(prs, 17, "16 · Kết luận", "Đóng góp của đồ án và bước phát triển tiếp theo", 30,
                   "Đóng góp: Pipeline chuẩn mực, đánh giá minh bạch, ứng dụng demo. Hướng tới: gán nhãn chuẩn, "
                   "ABSA khía cạnh, PhoBERT. Kết thúc slide, mời bạn Khang live demo. (~30s)")
     card(s, MX, 1.8, 6.0, 4.95, fill=SURF2)
@@ -717,7 +820,7 @@ def s15_closing(prs):
 
 
 def s12_demo(prs):
-    s = new_slide(prs, 15, "14 · Live demo", "Live demo hệ thống phân tích cảm xúc", 25,
+    s = new_slide(prs, 18, "17 · Live demo", "Live demo hệ thống phân tích cảm xúc", 25,
                   "Bạn Nguyễn Duy Khang chuyển sang ứng dụng Streamlit đã mở sẵn để thao tác trực tiếp 3 tính năng: "
                   "Insight doanh nghiệp -> Đánh giá 1 lỗi -> Phân tích review theo thời gian thực (~25s dẫn dắt).")
     card(s, MX, 1.8, 5.0, 4.95, fill=SURF2, line=blend(BG, MINT, 0.4))
@@ -745,6 +848,11 @@ def s12_demo(prs):
 # --------------------------------------------------------------------------- Sync master presentation
 def sync_existing_presentation(prs: Presentation) -> int:
     """Scan existing presentation shapes, fix semicolons in titles, ensure transitions."""
+    if len(prs.slides) >= 17:
+        # The legacy positional fixes below belong to the old 15-slide deck.
+        # Applying them after inserting the two experiment slides would edit
+        # unrelated slides, so leave an already updated deck untouched.
+        return 0
     mod_count = 0
     # Slide 1 check missing / broken image placeholder
     if len(prs.slides) >= 1:
@@ -965,7 +1073,7 @@ def save_presentation(prs: Presentation, out: Path) -> Path:
     out.parent.mkdir(parents=True, exist_ok=True)
     try:
         prs.save(str(out))
-        print(f"[OK] Đã lưu thành công 15 slide vào: {out}")
+        print(f"[OK] Đã lưu thành công {len(prs.slides)} slide vào: {out}")
         return out
     except PermissionError:
         fallback = out.with_name(f"{out.stem}_updated{out.suffix}")
@@ -989,7 +1097,7 @@ def build(out: Path, from_scratch: bool = False):
         mods = sync_existing_presentation(prs)
         print(f"[*] Đã kiểm tra và chỉnh sửa {mods} mục tiêu đề / liên kết.")
     else:
-        print("[*] Tạo presentation mới từ scratch (15 slide chuẩn Retrained v2)...")
+        print("[*] Tạo presentation mới từ scratch (18 slide chuẩn Retrained v2)...")
         prs = Presentation()
         prs.slide_width, prs.slide_height = Inches(W), Inches(H)
         s01_cover(prs)
@@ -999,6 +1107,9 @@ def build(out: Path, from_scratch: bool = False):
         s05_eda(prs)
         s06_tfidf(prs)
         s07_models(prs)
+        s08_metric_selection(prs)
+        s09_ngram(prs)
+        s09_imbalance_by_model(prs)
         s08_leaderboard(prs, cv, m)
         s09_final_test(prs, m, cm, per_class)
         s10_errors(prs, m)
@@ -1019,7 +1130,7 @@ if __name__ == "__main__":
             sys.stdout.reconfigure(encoding="utf-8")
         except AttributeError:
             pass
-    ap = argparse.ArgumentParser(description="Tạo hoặc cập nhật 15 slide thuyết trình đồ án ITviec.")
+    ap = argparse.ArgumentParser(description="Tạo hoặc cập nhật 18 slide thuyết trình đồ án ITviec.")
     ap.add_argument("-o", "--output", type=Path, default=ROOT / "reports" / "slides" / "ITviec_Sentiment_Analysis.pptx",
                     help="Đường dẫn file .pptx đầu ra")
     ap.add_argument("--scratch", action="store_true",
