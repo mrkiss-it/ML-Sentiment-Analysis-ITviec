@@ -21,6 +21,8 @@ baseline = load_json("reports/evaluation/final_test_snapshot.json")
 per_class = load_csv("reports/evaluation/retrained_v2/final_test_per_class.csv")
 matrix = load_csv("reports/evaluation/retrained_v2/confusion_matrix.csv").rename(columns={"Unnamed: 0": "Actual"})
 errors = load_csv("reports/evaluation/retrained_v2/error_examples_15.csv")
+ablation = load_json("reports/evaluation/metric_selection_ablation.json")
+imbalance_ablation = load_json("reports/evaluation/model_imbalance_ablation.json")
 metrics = snapshot["metrics"]
 negative = per_class.loc[per_class["Label"] == "Negative"].iloc[0]
 
@@ -69,9 +71,78 @@ with st.expander("Xem bảng kết quả 5 mô hình"):
 st.info(
     f"Biểu đồ là lần so sánh ban đầu (Logistic Regression: {baseline['cv_macro_f1']:.4f}). "
     f"Sau khi sửa tiền xử lý, model này đạt {snapshot['cv_macro_f1']:.4f} qua 5-fold CV. "
-    "Bốn model còn lại chưa được xếp hạng lại với bộ đặc trưng mới.",
+    "Bảng xếp hạng phía trên là GridSearchCV ban đầu; phép thử tham số cố định với tiền xử lý mới được trình bày bên dưới.",
     icon=":material/info:",
 )
+
+experiments = pd.DataFrame(ablation["configurations"])
+accuracy_pick = experiments.loc[experiments["cv_accuracy_mean"].idxmax()]
+f1_pick = experiments.loc[experiments["cv_macro_f1_mean"].idxmax()]
+with st.container(border=True, key="metric_selection_experiment"):
+    st.subheader("Chọn cấu hình bằng Accuracy hay Macro F1?", icon=":material/experiment:")
+    st.caption("Cùng 6.731 review Development, cùng 5 fold và Logistic Regression C=1.0. Mỗi cấu hình được chấm bằng cả hai thước đo; Final Test không tham gia chọn.")
+    left_pick, right_pick = st.columns(2, gap="medium")
+    with left_pick:
+        st.markdown("**Nếu chọn theo Accuracy**")
+        st.metric("CV Accuracy", f"{accuracy_pick['cv_accuracy_mean']:.4f}", border=True)
+        st.caption(f"{accuracy_pick['ngram']} · {accuracy_pick['strategy']} · Macro F1 {accuracy_pick['cv_macro_f1_mean']:.4f}")
+    with right_pick:
+        st.markdown("**Nếu chọn theo Macro F1**")
+        st.metric("CV Macro F1", f"{f1_pick['cv_macro_f1_mean']:.4f}", border=True)
+        st.caption(f"{f1_pick['ngram']} · {f1_pick['strategy']} · Accuracy {f1_pick['cv_accuracy_mean']:.4f}")
+    smote_reference = experiments.loc[(experiments["ngram"] == "Unigram + Bigram") & (experiments["strategy"] == "SMOTE")].iloc[0]
+    st.write(
+        f"Accuracy ưu tiên {accuracy_pick['strategy'].lower()}; Macro F1 ưu tiên {f1_pick['strategy'].lower()}. "
+        f"Macro F1 của cấu hình này ({f1_pick['cv_macro_f1_mean']:.4f}) và SMOTE ({smote_reference['cv_macro_f1_mean']:.4f}) "
+        "rất sát nhau, nên chưa thể khẳng định một cách xử lý luôn tốt hơn."
+    )
+    ngram_chart = alt.Chart(experiments).mark_bar(cornerRadiusEnd=4).encode(
+        x=alt.X("ngram:N", title="Đặc trưng", sort=["Unigram", "Bigram", "Unigram + Bigram"]),
+        y=alt.Y("cv_macro_f1_mean:Q", title="CV Macro F1", scale=alt.Scale(domain=[0, 0.65])),
+        color=alt.Color("strategy:N", title="Xử lý mất cân bằng"),
+        xOffset="strategy:N",
+        tooltip=["ngram:N", "strategy:N", alt.Tooltip("cv_accuracy_mean:Q", format=".4f"), alt.Tooltip("cv_macro_f1_mean:Q", format=".4f")],
+    ).properties(height=235)
+    st.altair_chart(style_chart(ngram_chart), width="stretch")
+    with st.expander("Xem đủ 9 cấu hình thực nghiệm"):
+        display = experiments[["ngram", "strategy", "cv_accuracy_mean", "cv_macro_f1_mean"]].rename(columns={
+            "ngram": "Đặc trưng", "strategy": "Cân bằng lớp", "cv_accuracy_mean": "CV Accuracy", "cv_macro_f1_mean": "CV Macro F1"
+        })
+        st.dataframe(display, hide_index=True, width="stretch", column_config={
+            "CV Accuracy": st.column_config.NumberColumn(format="%.4f"),
+            "CV Macro F1": st.column_config.NumberColumn(format="%.4f"),
+        })
+    baseline_no_text = ablation["no_text_baseline"]
+    st.caption(
+        f"Mốc không dùng đặc trưng văn bản: luôn đoán lớp đông nhất, "
+        f"CV Accuracy {baseline_no_text['cv_accuracy_mean']:.4f}, "
+        f"CV Macro F1 {baseline_no_text['cv_macro_f1_mean']:.4f}."
+    )
+    st.caption("Thí nghiệm bổ sung chỉ dùng Development CV. Model đang chạy trong demo vẫn là Logistic Regression + SMOTE với unigram + bigram; kết quả Final Test trên trang thuộc model đó.")
+
+with st.container(border=True, key="imbalance_by_model"):
+    st.subheader("Class weight ảnh hưởng đến từng mô hình thế nào?", icon=":material/balance:")
+    st.caption("Cùng văn bản sau tiền xử lý, TF-IDF unigram + bigram và 5 fold Development; mỗi model được chấm với không xử lý, class weight và SMOTE.")
+    by_model = pd.DataFrame(imbalance_ablation["rows"])
+    measured = by_model.loc[by_model["status"] == "measured"].copy()
+    chart = alt.Chart(measured).mark_bar(cornerRadiusEnd=4).encode(
+        y=alt.Y("model:N", title=None, sort=["Logistic Regression", "Linear SVM", "Random Forest", "Multinomial Naive Bayes", "Stacking Ensemble"]),
+        x=alt.X("cv_macro_f1_mean:Q", title="CV Macro F1", scale=alt.Scale(domain=[0, 0.7])),
+        color=alt.Color("strategy:N", title="Xử lý mất cân bằng"),
+        yOffset="strategy:N",
+        tooltip=["model:N", "strategy:N", alt.Tooltip("cv_accuracy_mean:Q", format=".4f"), alt.Tooltip("cv_macro_f1_mean:Q", format=".4f")],
+    ).properties(height=290)
+    st.altair_chart(style_chart(chart), width="stretch")
+    with st.expander("Xem điểm của từng model"):
+        table = by_model[["model", "strategy", "cv_accuracy_mean", "cv_macro_f1_mean", "status"]].rename(columns={
+            "model": "Mô hình", "strategy": "Cách xử lý", "cv_accuracy_mean": "CV Accuracy",
+            "cv_macro_f1_mean": "CV Macro F1", "status": "Trạng thái",
+        })
+        st.dataframe(table, hide_index=True, width="stretch", column_config={
+            "CV Accuracy": st.column_config.NumberColumn(format="%.4f"),
+            "CV Macro F1": st.column_config.NumberColumn(format="%.4f"),
+        })
+    st.caption("Naive Bayes không có tham số class_weight. Trong Stacking, class weight áp dụng cho LR, SVM, RF và meta LR; NB giữ nguyên. Bảng này dùng tham số cố định nên không phải bảng GridSearchCV ban đầu.")
 
 section_label("02 / Chất lượng trên Final Test")
 with st.container(horizontal=True, key="eval_metrics"):
