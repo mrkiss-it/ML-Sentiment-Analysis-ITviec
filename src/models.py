@@ -20,7 +20,7 @@ from sklearn.svm import LinearSVC
 
 RANDOM_STATE = 2026
 
-# Thứ tự base learners cho Stacking đúng theo kế hoạch TV3: [MNB, LR, LinearSVC, RF] -> meta LR.
+# Thứ tự base learners cho Stacking Ensemble: [MNB, LR, LinearSVC, RF] -> meta LR.
 STACKING_BASE_ORDER = [
     "Multinomial Naive Bayes",
     "Logistic Regression",
@@ -35,7 +35,7 @@ _SHORT_NAMES = {
     "Random Forest": "rf",
 }
 
-# Lưới siêu tham số mặc định cho GridSearchCV (Giai đoạn 2 của kế hoạch TV3).
+# Lưới siêu tham số mặc định cho GridSearchCV.
 PARAM_GRIDS: Dict[str, Dict[str, List[Any]]] = {
     "Multinomial Naive Bayes": {"clf__alpha": [0.1, 0.5, 1.0, 2.0]},
     "Logistic Regression": {"clf__C": [0.1, 1.0, 3.0, 10.0]},
@@ -48,7 +48,7 @@ PARAM_GRIDS: Dict[str, Dict[str, List[Any]]] = {
 
 
 def build_base_models(random_state: int = RANDOM_STATE) -> Dict[str, Any]:
-    """5 mô hình cơ sở của kế hoạch TV3, dùng class_weight='balanced' làm chiến lược mất cân bằng mặc định."""
+    """5 mô hình cơ sở, dùng class_weight='balanced' làm chiến lược mất cân bằng mặc định."""
     return {
         "Multinomial Naive Bayes": MultinomialNB(),
         "Logistic Regression": LogisticRegression(
@@ -175,7 +175,7 @@ def lock_best_model(estimator: Any, X_train: sparse.spmatrix, y_train) -> Any:
 
 
 def save_model(model: Any, filepath: str | os.PathLike[str]) -> None:
-    """Lưu model đã khóa để bàn giao cho TV4."""
+    """Lưu model đã khóa để phục vụ bước đánh giá độc lập."""
     path = Path(filepath)
     path.parent.mkdir(parents=True, exist_ok=True)
     joblib.dump(model, path)

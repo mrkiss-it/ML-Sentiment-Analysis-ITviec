@@ -1,4 +1,4 @@
-"""Utilities for TV4 final evaluation, company insights, and web inference."""
+"""Utilities for model evaluation, company insights, and web inference."""
 
 from __future__ import annotations
 
@@ -73,7 +73,7 @@ def sha256_file(path: str | Path) -> str:
 
 
 def build_cv_ranking() -> pd.DataFrame:
-    """Return the frozen CV ranking handed over by TV3."""
+    """Return the frozen CV model ranking table."""
     frame = pd.DataFrame(
         TV3_CV_RESULTS,
         columns=["Model", "CV Macro F1 Mean", "CV Macro F1 Std", "Strategy", "Best Params"],

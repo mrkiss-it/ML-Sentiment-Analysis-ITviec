@@ -4,11 +4,11 @@
 
 ## Nguyên tắc thực nghiệm
 
-Toàn bộ nội dung dưới đây được tính toán **chỉ trên tập Development (`X_train`, 6.731 mẫu, 80%)** do TV2 bàn giao, bằng Stratified 5-Fold Cross Validation (`random_state=2026`). Tập Final Test (`X_test`, 1.683 mẫu, 20%) bị khóa theo `artifact_manifest.json` (`final_test_policy: locked_not_evaluated_by_tv2`) và **không được đụng đến ở giai đoạn này** — đây là nguyên tắc chống rò rỉ đánh giá (evaluation leakage), đảm bảo con số Final Test mà TV4 công bố ở Chương 5 phản ánh đúng khả năng tổng quát hóa của mô hình trên dữ liệu chưa từng được nhìn thấy trong suốt quá trình chọn và tune mô hình.
+Toàn bộ nội dung dưới đây được tính toán **chỉ trên tập Development (`X_train`, 6.731 mẫu, 80%)** được phân chia trong bước trích xuất đặc trưng, bằng Stratified 5-Fold Cross Validation (`random_state=2026`). Tập Final Test (`X_test`, 1.683 mẫu, 20%) bị khóa theo `artifact_manifest.json` (`final_test_policy: locked_not_evaluated_by_tv2`) và **không được đụng đến ở giai đoạn này** — đây là nguyên tắc chống rò rỉ đánh giá (evaluation leakage), đảm bảo con số Final Test công bố ở bước đánh giá kiểm thử độc lập phản ánh đúng khả năng tổng quát hóa của mô hình trên dữ liệu chưa từng được nhìn thấy trong suốt quá trình chọn và tune mô hình.
 
 ## 4.1. Thiết kế các mô hình Machine Learning
 
-Năm mô hình được cài đặt trong `src/models.py` (hàm `build_base_models` và `build_stacking`), tất cả nhận đầu vào là ma trận đặc trưng TF-IDF thưa (`5.000` chiều) do TV2 trích xuất.
+Năm mô hình được cài đặt trong `src/models.py` (hàm `build_base_models` và `build_stacking`), tất cả nhận đầu vào là ma trận đặc trưng TF-IDF thưa (`5.000` chiều) được trích xuất từ văn bản.
 
 **1. Multinomial Naive Bayes (MNB) — mô hình Baseline.** Ước lượng xác suất hậu nghiệm từng lớp qua định lý Bayes với giả định ngây thơ (naive) rằng các đặc trưng độc lập có điều kiện với nhau khi biết nhãn. Tham số `alpha` là hệ số làm trơn Laplace, tránh xác suất bằng 0 với các n-gram chưa xuất hiện trong lớp. Giả định độc lập này bị vi phạm rõ với đặc trưng n-gram (1,2), vì một bigram luôn tương quan chặt với hai unigram thành phần của nó — đây là nguyên nhân chính khiến MNB là mô hình yếu nhất trong năm mô hình (xem Mục 5.1).
 
@@ -112,11 +112,11 @@ Ma trận nhầm lẫn dưới đây là dự đoán **out-of-fold** của Logis
 - Lớp **Positive** được nhận diện tốt (F1 = 0.8524) nhờ số lượng mẫu áp đảo (73,8%), phù hợp với kỳ vọng.
 - Lớp **Neutral** bị nhầm nhiều nhất sang Positive (721/1.310 ≈ 55%) — đúng như dự đoán trong đề cương: review trung tính thường chứa cả ý khen lẫn ý chê với tỷ trọng gần bằng nhau, khiến trọng số TF-IDF của các từ tích cực/tiêu cực gần như triệt tiêu lẫn nhau và mô hình dễ ngả theo lớp đa số.
 - Lớp **Negative** cũng bị nhầm đáng kể sang Neutral (166/456 ≈ 36%), phản ánh ranh giới mờ giữa "phàn nàn nhẹ" (Neutral) và "bức xúc" (Negative) trong cách viết đánh giá tiếng Việt.
-- Vì đây là chỉ số **CV out-of-fold trên tập Development** (không phải Final Test), khoảng cách giữa Macro F1 trung bình các fold (0.5727, Mục 4.2.2) và Macro F1 tổng hợp trên toàn bộ out-of-fold predictions (0.5730) gần như bằng nhau — cho thấy mô hình **không có dấu hiệu overfitting** giữa các fold: hiệu năng ổn định và nhất quán trên các phần dữ liệu khác nhau của tập train, đúng như kỳ vọng đối với một mô hình tuyến tính có regularization phù hợp (`C=1.0`) trên không gian đặc trưng thưa. Đánh giá underfitting/overfitting **chính thức** (so với Final Test độc lập) sẽ do TV4 thực hiện ở Chương 5, khi so sánh con số này với Macro F1 đo được trên `X_test`.
+- Vì đây là chỉ số **CV out-of-fold trên tập Development** (không phải Final Test), khoảng cách giữa Macro F1 trung bình các fold (0.5727, Mục 4.2.2) và Macro F1 tổng hợp trên toàn bộ out-of-fold predictions (0.5730) gần như bằng nhau — cho thấy mô hình **không có dấu hiệu overfitting** giữa các fold: hiệu năng ổn định và nhất quán trên các phần dữ liệu khác nhau của tập train, đúng như kỳ vọng đối với một mô hình tuyến tính có regularization phù hợp (`C=1.0`) trên không gian đặc trưng thưa. Đánh giá underfitting/overfitting **chính thức** (so với Final Test độc lập) được thực hiện ở bước đánh giá độc lập, khi so sánh con số này với Macro F1 đo được trên `X_test`.
 
-## Bàn giao cho TV4
+## Lưu Trữ Mô Hình Tối Ưu
 
 - Model đã khóa: [`models/best_sentiment_model.joblib`](../models/best_sentiment_model.joblib) — Logistic Regression (`C=1.0`), huấn luyện lại trên toàn bộ `X_train` (6.731 mẫu), **chưa từng được đánh giá trên Final Test**.
 - Notebook tái lập: [`notebooks/03_sentiment_modeling_ml.ipynb`](../notebooks/03_sentiment_modeling_ml.ipynb).
 - Module dùng chung: [`src/models.py`](../src/models.py).
-- TV4 chỉ cần `joblib.load()` model này và `load_feature_split()` để lấy `X_test`/`y_test` từ `models/train_test_features.joblib`, sau đó đánh giá **đúng một lần** trong `notebooks/05_company_sentiment_insights.ipynb`.
+- Tại bước đánh giá độc lập, chỉ cần `joblib.load()` model này và `load_feature_split()` để lấy `X_test`/`y_test` từ `models/train_test_features.joblib`, sau đó đánh giá **đúng một lần** trong `notebooks/05_company_sentiment_insights.ipynb`.

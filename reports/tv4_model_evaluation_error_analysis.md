@@ -1,8 +1,8 @@
-# TV4 - Đánh giá Final Test và phân tích lỗi
+# Báo Cáo Đánh Giá Final Test và Phân Tích Lỗi (Model Evaluation & Error Analysis)
 
 ## 3.4. Kết quả thực nghiệm
 
-Mô hình được TV3 khóa trước khi mở Final Test là **Logistic Regression (`C=1.0`) + SMOTE**. Final Test gồm **1,683** mẫu và chỉ được đánh giá trong lần chạy có snapshot này.
+Mô hình được lựa chọn và khóa trước khi mở Final Test là **Logistic Regression (`C=1.0`) + SMOTE**. Final Test gồm **1,683** mẫu và chỉ được đánh giá trong lần chạy có snapshot này.
 
 - Accuracy: **73.74%**
 - Macro F1: **0.5714**

@@ -1,4 +1,4 @@
-# TV4 - Company Sentiment Insights
+# Báo Cáo Phân Tích Cảm Xúc Doanh Nghiệp (Company Sentiment Insights)
 
 Phân tích mô tả trên **8,417 reviews**, **180 công ty**. Năm case study được chọn theo số review lớn nhất để giảm rủi ro kết luận từ mẫu quá nhỏ.
 
